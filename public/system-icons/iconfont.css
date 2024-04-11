@@ -1,0 +1,315 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4356808 */
+  src: url('iconfont.woff2?t=1707808486506') format('woff2'),
+       url('iconfont.woff?t=1707808486506') format('woff'),
+       url('iconfont.ttf?t=1707808486506') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-file:before {
+  content: "\e63d";
+}
+
+.icon-file1:before {
+  content: "\e63e";
+}
+
+.icon-word:before {
+  content: "\e603";
+}
+
+.icon-pdf:before {
+  content: "\e604";
+}
+
+.icon-word1:before {
+  content: "\e607";
+}
+
+.icon-excel:before {
+  content: "\e665";
+}
+
+.icon-pdf1:before {
+  content: "\e605";
+}
+
+.icon-excel1:before {
+  content: "\ea46";
+}
+
+.icon-exit-fullscreen2:before {
+  content: "\e768";
+}
+
+.icon-exit-fullscreen1:before {
+  content: "\e671";
+}
+
+.icon-exit-fullscreen:before {
+  content: "\eb98";
+}
+
+.icon-menu1:before {
+  content: "\e61a";
+}
+
+.icon-menu:before {
+  content: "\e634";
+}
+
+.icon-member:before {
+  content: "\e628";
+}
+
+.icon-member1:before {
+  content: "\e77d";
+}
+
+.icon-user:before {
+  content: "\e629";
+}
+
+.icon-user1:before {
+  content: "\e6ab";
+}
+
+.icon-role1:before {
+  content: "\e618";
+}
+
+.icon-log2:before {
+  content: "\e68d";
+}
+
+.icon-log1:before {
+  content: "\e663";
+}
+
+.icon-icon:before {
+  content: "\eb80";
+}
+
+.icon-maintenance:before {
+  content: "\e615";
+}
+
+.icon-maintenance1:before {
+  content: "\e6af";
+}
+
+.icon-maintenance2:before {
+  content: "\e616";
+}
+
+.icon-home5:before {
+  content: "\e601";
+}
+
+.icon-home4:before {
+  content: "\e610";
+}
+
+.icon-home3:before {
+  content: "\e602";
+}
+
+.icon-home:before {
+  content: "\e6cb";
+}
+
+.icon-home1:before {
+  content: "\e62e";
+}
+
+.icon-home2:before {
+  content: "\e8c6";
+}
+
+.icon-permission:before {
+  content: "\e8a3";
+}
+
+.icon-settings1:before {
+  content: "\e8b7";
+}
+
+.icon-monitor:before {
+  content: "\e613";
+}
+
+.icon-interface:before {
+  content: "\e74a";
+}
+
+.icon-emoji:before {
+  content: "\ec80";
+}
+
+.icon-interface2:before {
+  content: "\e60b";
+}
+
+.icon-maintenance4:before {
+  content: "\e6a5";
+}
+
+.icon-task:before {
+  content: "\e612";
+}
+
+.icon-teacher:before {
+  content: "\e633";
+}
+
+.icon-yuyue1:before {
+  content: "\e65f";
+}
+
+.icon-class:before {
+  content: "\e60d";
+}
+
+.icon-department:before {
+  content: "\e621";
+}
+
+.icon-contract:before {
+  content: "\e6c8";
+}
+
+.icon-customer1:before {
+  content: "\e648";
+}
+
+.icon-message:before {
+  content: "\e8bd";
+}
+
+.icon-goods:before {
+  content: "\e683";
+}
+
+.icon-score:before {
+  content: "\e61b";
+}
+
+.icon-course1:before {
+  content: "\e61f";
+}
+
+.icon-course2:before {
+  content: "\e630";
+}
+
+.icon-store:before {
+  content: "\e6f6";
+}
+
+.icon-address3:before {
+  content: "\e814";
+}
+
+.icon-contract1:before {
+  content: "\e614";
+}
+
+.icon-contract2:before {
+  content: "\e619";
+}
+
+.icon-role:before {
+  content: "\e60c";
+}
+
+.icon-teacher1:before {
+  content: "\e81f";
+}
+
+.icon-store2:before {
+  content: "\e60a";
+}
+
+.icon-position1:before {
+  content: "\e716";
+}
+
+.icon-login-log:before {
+  content: "\ea45";
+}
+
+.icon-position:before {
+  content: "\e611";
+}
+
+.icon-user-group:before {
+  content: "\e70b";
+}
+
+.icon-student2:before {
+  content: "\e73f";
+}
+
+.icon-student1:before {
+  content: "\e740";
+}
+
+.icon-goods1:before {
+  content: "\e600";
+}
+
+.icon-address2:before {
+  content: "\e652";
+}
+
+.icon-course3:before {
+  content: "\e6be";
+}
+
+.icon-contract4:before {
+  content: "\e632";
+}
+
+.icon-order:before {
+  content: "\e65c";
+}
+
+.icon-store1:before {
+  content: "\e606";
+}
+
+.icon-dict:before {
+  content: "\e666";
+}
+
+.icon-settings:before {
+  content: "\e8b8";
+}
+
+.icon-student:before {
+  content: "\e7c0";
+}
+
+.icon-notice:before {
+  content: "\e62f";
+}
+
+.icon-address1:before {
+  content: "\e63f";
+}
+
+.icon-log:before {
+  content: "\e644";
+}
+
+.icon-score2:before {
+  content: "\e67e";
+}
+
