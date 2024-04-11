@@ -19,16 +19,6 @@
       <el-form-item v-if="form.id == null" label="登录密码" prop="password" required>
         <el-input v-model="form.password" type="password" placeholder="请输入登录密码" maxlength="30" show-password/>
       </el-form-item>
-      <el-form-item label="所在部门" prop="departmentId">
-        <DepartmentSelect v-model="form.departmentId" :clearable="true"/>
-      </el-form-item>
-      <el-form-item v-if="form.departmentId != null" label="是否为部门负责人" prop="isLeader">
-        <el-switch
-          v-model="form.isLeader"
-          active-text="是"
-          inactive-text="否"
-        />
-      </el-form-item>
       <el-form-item label="工号" prop="empNo">
         <el-input v-model="form.empNo" placeholder="请输入工号" v-trim maxlength="50"/>
       </el-form-item>
@@ -47,12 +37,10 @@
 
 <script>
 import BaseOpera from '@/components/base/BaseOpera'
-import DepartmentSelect from '@/components/system/department/DepartmentSelect'
 import { checkMobile, checkEmail <#noparse>}</#noparse> from '@/core/utils/form'
 
 export default {
   name: 'OperaUserWindow',
-  components: { DepartmentSelect <#noparse>}</#noparse>,
   extends: BaseOpera,
   data () {
     const _this = this
@@ -62,8 +50,6 @@ export default {
         id: null,
         username: '', // 用户名
         realName: '', // 姓名
-        departmentId: [], // 所在部门
-        isLeader: false, // 是否为部门负责人
         empNo: '', // 工号
         avatar: '/avatar/man.png', // 头像
         password: '', // 密码
@@ -113,8 +99,6 @@ export default {
         this.$nextTick(() => {
           this.$refs.form.resetFields()
           this.form.id = null
-          this.form.departmentId = null
-          this.form.positionIds = []
         <#noparse>}</#noparse>)
         return
       <#noparse>}</#noparse>
@@ -123,12 +107,6 @@ export default {
         for (const key in this.form) {
           this.form[key] = target[key]
         <#noparse>}</#noparse>
-        if (target.departments.length > 0) {
-          this.form.departmentId = target.departments[0].id
-        <#noparse>}</#noparse>
-        this.form.isLeader = target.isDepartmentLeader
-        this.form.departmentId = target.department == null ? null : target.department.id
-        this.form.positionIds = target.positions == null ? [] : target.positions.map(p => p.id)
       <#noparse>}</#noparse>)
     <#noparse>}</#noparse>,
     /**
@@ -142,18 +120,7 @@ export default {
       if (this.form.sex === 'FEMALE') {
         this.form.avatar = '/avatar/woman.png'
       <#noparse>}</#noparse>
-      const form = JSON.parse(JSON.stringify(this.form))
-      // 增加部门ID集
-      form.departmentIds = []
-      if (form.departmentId != null) {
-        form.departmentIds = [form.departmentId]
-      <#noparse>}</#noparse>
-      if (form.departmentIds.length === 0) {
-        form.isLeader = false
-      <#noparse>}</#noparse>
-      // 删除部门ID
-      delete form.departmentId
-      return form
+      return JSON.parse(JSON.stringify(this.form))
     <#noparse>}</#noparse>
   <#noparse>}</#noparse>,
   async created () {

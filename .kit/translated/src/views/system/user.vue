@@ -128,21 +128,6 @@
             <TagCellValue :data="row.roles" label-key="name"/>
           </template>
         </el-table-column>
-        <el-table-column
-            prop="roles"
-            label="部门"
-            min-width="160px"
-            class-name="table-column-strings"
-        >
-          <template #default="{ row <#noparse>}</#noparse>">
-            <TagCellValue :data="row.departments" label-key="name"/>
-          </template>
-        </el-table-column>
-        <el-table-column prop="isDepartmentLeader" label="是否为部门负责人" min-width="80px">
-          <template v-slot:default="{ row <#noparse>}</#noparse>">
-            {{ $filters.yONText(row.isDepartmentLeader) <#noparse>}</#noparse><#noparse>}</#noparse>
-          </template>
-        </el-table-column>
         <el-table-column prop="creatorRealName" label="创建人" min-width="100px"/>
         <el-table-column
           prop="createdAt"

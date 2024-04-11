@@ -169,7 +169,7 @@ export default {
             title: route.name,
             paths: [...parents.map(p => p.name), route.name]
           <#noparse>}</#noparse>,
-          component: () => import('./views' + route.uri)
+          component: () => import(/* @vite-ignore */`./views<#noparse>${</#noparse>route.uri<#noparse>}</#noparse>`)
         <#noparse>}</#noparse>)
         this.__addRouters(route.children, parentsDump)
       <#noparse>}</#noparse>

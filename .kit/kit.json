@@ -1,7 +1,7 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "private": false,
   "receivable": false,
   "compiler": "freemarker",
@@ -25,7 +25,7 @@
       "inputType": "input",
       "required": true,
       "hidden": false,
-      "defaultValue": "测试工程",
+      "defaultValue": "伊娃权限基础工程 Vue3选项式 V4.0",
       "compiler": "static",
       "remark": ""
     },
@@ -37,7 +37,7 @@
       "inputType": "input",
       "required": false,
       "hidden": false,
-      "defaultValue": "测试工程描述",
+      "defaultValue": "由清华海峡研究院高端装备技术研究中心与清华海峡研究院联合研发，全职团队维护，开源免费，无版权！",
       "compiler": "static",
       "remark": ""
     },
@@ -49,7 +49,7 @@
       "inputType": "input",
       "required": true,
       "hidden": false,
-      "defaultValue": "测试",
+      "defaultValue": "伊娃权限系统",
       "compiler": "static",
       "remark": ""
     }
