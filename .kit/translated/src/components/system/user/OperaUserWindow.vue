@@ -120,7 +120,7 @@ export default {
       if (this.form.sex === 'FEMALE') {
         this.form.avatar = '/avatar/woman.png'
       <#noparse>}</#noparse>
-      return JSON.parse(JSON.stringify(this.form))
+      return this.form
     <#noparse>}</#noparse>
   <#noparse>}</#noparse>,
   async created () {
