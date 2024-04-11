@@ -49,7 +49,7 @@
       <SearchTable
         v-loading="isWorking.search"
         :data="tableData.list"
-        :default-sort = "{ prop: 'createdAt', order: 'descending' }"
+        :default-sort = "{ prop: 'createdAt', order: 'descending' <#noparse>}</#noparse>"
         v-model:fullscreen="fullscreen"
         buttons-width="310px"
         @refresh="refresh"
@@ -83,7 +83,7 @@
           class-name="table-column-avatar"
           fixed="left"
         >
-          <template #default="{ row }">
+          <template #default="{ row <#noparse>}</#noparse>">
             <img
               :src="row.avatar == null ? '/static/avatar/man.png' : row.avatar"
               alt="头像"
@@ -111,8 +111,8 @@
           sort-by="GENDER"
           min-width="80px"
         >
-          <template #default="{ row }">
-            {{ $d(`GENDERS.${row.gender}`) }}
+          <template #default="{ row <#noparse>}</#noparse>">
+            {{ $d(`GENDERS.<#noparse>${</#noparse>row.gender<#noparse>}</#noparse>`) <#noparse>}</#noparse><#noparse>}</#noparse>
           </template>
         </el-table-column>
         <el-table-column prop="mobile" label="手机号码" min-width="120px"/>
@@ -124,8 +124,23 @@
           min-width="160px"
           class-name="table-column-strings"
         >
-          <template #default="{ row }">
+          <template #default="{ row <#noparse>}</#noparse>">
             <TagCellValue :data="row.roles" label-key="name"/>
+          </template>
+        </el-table-column>
+        <el-table-column
+            prop="roles"
+            label="部门"
+            min-width="160px"
+            class-name="table-column-strings"
+        >
+          <template #default="{ row <#noparse>}</#noparse>">
+            <TagCellValue :data="row.departments" label-key="name"/>
+          </template>
+        </el-table-column>
+        <el-table-column prop="isDepartmentLeader" label="是否为部门负责人" min-width="80px">
+          <template v-slot:default="{ row <#noparse>}</#noparse>">
+            {{ $filters.yONText(row.isDepartmentLeader) <#noparse>}</#noparse><#noparse>}</#noparse>
           </template>
         </el-table-column>
         <el-table-column prop="creatorRealName" label="创建人" min-width="100px"/>
@@ -151,7 +166,7 @@
             'system:user:password:reset',
             'system:user:delete'
           ])"
-          #buttons="{ row }"
+          #buttons="{ row <#noparse>}</#noparse>"
         >
           <!-- 超级管理员 -->
           <template v-if="userInfo.isSuperAdmin">
@@ -239,8 +254,8 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
-import { useDefaultStore } from '@/core/store'
+import { mapState <#noparse>}</#noparse> from 'pinia'
+import { useDefaultStore <#noparse>}</#noparse> from '@/core/store'
 import BaseTable from '@/components/base/BaseTable'
 import OperaUserWindow from '@/components/system/user/OperaUserWindow'
 import RoleConfigWindow from '@/components/system/user/RoleConfigWindow'
@@ -252,7 +267,7 @@ export default {
     ResetPwdWindow,
     RoleConfigWindow,
     OperaUserWindow
-  },
+  <#noparse>}</#noparse>,
   data () {
     return {
       // 搜索
@@ -260,18 +275,18 @@ export default {
         username: '', // 名字
         realName: '', // 姓名
         mobile: '' // 手机号码
-      }
-    }
-  },
+      <#noparse>}</#noparse>
+    <#noparse>}</#noparse>
+  <#noparse>}</#noparse>,
   computed: {
     ...mapState(useDefaultStore, ['userInfo'])
-  },
+  <#noparse>}</#noparse>,
   methods: {
     // 是否为超级管理员
     isSuperAdmin (user) {
       return user.roles.findIndex(item => item.code === this.$const.ROLE_ADMIN) !== -1
-    }
-  },
+    <#noparse>}</#noparse>
+  <#noparse>}</#noparse>,
   async created () {
     this.config({
       module: '用户',
@@ -280,11 +295,11 @@ export default {
       sorts: [{
         property: 'created_at',
         direction: 'DESC'
-      }]
-    })
+      <#noparse>}</#noparse>]
+    <#noparse>}</#noparse>)
     this.search()
-  }
-}
+  <#noparse>}</#noparse>
+<#noparse>}</#noparse>
 </script>
 
 <style scoped lang="scss">
@@ -292,6 +307,6 @@ export default {
 .table-column-avatar {
   img {
     width: 48px;
-  }
-}
+  <#noparse>}</#noparse>
+<#noparse>}</#noparse>
 </style>

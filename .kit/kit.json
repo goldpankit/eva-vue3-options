@@ -1,0 +1,105 @@
+{
+  "name": "vue3-options",
+  "label": "Eva4前端Vue3选项式风格版",
+  "version": "4.0.0",
+  "private": false,
+  "receivable": false,
+  "compiler": "freemarker",
+  "repository": "https://gitee.com/goldpankit/eva-vue3-options",
+  "branch": "",
+  "supportedDatabases": [],
+  "prices": [
+    {
+      "type": "FREE",
+      "value": 0
+    }
+  ],
+  "builds": [],
+  "unbuilds": [],
+  "variables": [
+    {
+      "id": "syjljese1mow",
+      "type": "variable",
+      "name": "loginTitle",
+      "label": "登录页项目标题",
+      "inputType": "input",
+      "required": true,
+      "hidden": false,
+      "defaultValue": "测试工程",
+      "compiler": "static",
+      "remark": ""
+    },
+    {
+      "id": "1ncl776trtwgg",
+      "type": "variable",
+      "name": "loginDescription",
+      "label": "登录页项目说明",
+      "inputType": "input",
+      "required": false,
+      "hidden": false,
+      "defaultValue": "测试工程描述",
+      "compiler": "static",
+      "remark": ""
+    },
+    {
+      "id": "1qm75h7t43dw0",
+      "type": "variable",
+      "name": "menuTitle",
+      "label": "菜单顶部项目名称",
+      "inputType": "input",
+      "required": true,
+      "hidden": false,
+      "defaultValue": "测试",
+      "compiler": "static",
+      "remark": ""
+    }
+  ],
+  "translator": {
+    "output": ".kit/translated",
+    "settings": [
+      {
+        "name": "${}表达式处理",
+        "path": ".*",
+        "type": "code",
+        "source": "",
+        "target": "",
+        "code": "  if (content == null) {\n    return {filepath: filepath, content: content};\n  }\n  if (fileSetting.compiler === 'static') {\n    return {filepath: filepath, content: content};\n  }\n  content = content.replace(/\\${/g, '<#noparse>${</#noparse>')\n  content = content.replace(/}/g, '<#noparse>}</#noparse>')\n  return {filepath: filepath, content: content};"
+      },
+      {
+        "name": "#{}表达式处理",
+        "path": ".*",
+        "type": "code",
+        "source": "",
+        "target": "",
+        "code": "  if (content == null) {\n    return {filepath: filepath, content: content};\n  }\n  if (fileSetting.compiler === 'static') {\n    return {filepath: filepath, content: content};\n  }\n  if (filepath.split('/').pop() === 'pom.xml') {\n    return {filepath: filepath, content: content};\n  }\n  content = content.replace(/#{/g, '<#noparse>#{</#noparse>')\n  return {filepath: filepath, content: content};"
+      },
+      {
+        "name": "登录页项目名称处理",
+        "path": ".*login.vue",
+        "type": "pattern",
+        "source": "伊娃权限基础工程 V4.0",
+        "target": "${loginTitle}",
+        "code": ""
+      },
+      {
+        "name": "登录页项目说明处理",
+        "path": ".*login.vue",
+        "type": "pattern",
+        "source": "由清华海峡研究院高端装备技术研究中心与清华海峡研究院联合研发，全职团队维护，开源免费，无版权！",
+        "target": "${loginDescription}",
+        "code": ""
+      },
+      {
+        "name": "菜单顶部项目名称处理",
+        "path": ".*Menu.vue",
+        "type": "pattern",
+        "source": "伊娃权限系统",
+        "target": "${menuTitle}",
+        "code": ""
+      }
+    ]
+  },
+  "settings": [],
+  "introduce": "🇨🇳一套基于Vue3、SASS、Element-Plus、Pinia的权限管理基础工程前端，采用Options写法，方便Vue2使用者快速上手，可与任意eva系权限系统后端结合使用来完成权限系统的研发。",
+  "readme": "Eva4由**GoldPanKit官方研制**，其中Eva3.0已成功上线8000+项目，在4.0之前由「程序员懒猴子」维护，从4.0开始纳入**清华海峡院高端装备技术研究中心**进行整体改造和持续维护。\n\n## 服务介绍\n当前为Eva的前端Vue3版本，UI库为Element-Plus，样式预编译采用sass，安装服务时只需要指定「登录页项目标题」和「登录页项目说明」以及「菜单顶部项目名称」即可快速构建项目。\n\n## 参数介绍\n|参数名称|参数说明|\n|-|-|\n|登录页项目标题|用于展示在登录页面|\n|登录页项目说明|用于展示在标题的下方，对项目进行一个描述|\n|菜单顶部项目名称|用于展示在菜单顶部，一般为项目缩写，字数过多会引起样式不正确，需手动在Menu.vue中做调整。|\n\n## 技术文档\n[http://v4.eva.adjustrd.com/](http://v4.eva.adjustrd.com/)\n\n## 在线演示\n[http://online-v4.eva.adjustrd.com/](http://online-v4.eva.adjustrd.com/)\n超级管理员账号：admin/123123\n\n## 技术支持\n\n可添加「**小艺**」企业微信，她会邀请您加入技术交流群。添加时请备注「**Eva**」\n<div>\n<img src=\"/resource/image?f=b0a226e3-e50b-4450-98ee-f581d365c7c9.png\" width=\"255px\" alt=\"小艺企业微信\"/>\n</div>"
+}

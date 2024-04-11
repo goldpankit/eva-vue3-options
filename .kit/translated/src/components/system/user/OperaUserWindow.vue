@@ -19,6 +19,16 @@
       <el-form-item v-if="form.id == null" label="登录密码" prop="password" required>
         <el-input v-model="form.password" type="password" placeholder="请输入登录密码" maxlength="30" show-password/>
       </el-form-item>
+      <el-form-item label="所在部门" prop="departmentId">
+        <DepartmentSelect v-model="form.departmentId" :clearable="true"/>
+      </el-form-item>
+      <el-form-item v-if="form.departmentId != null" label="是否为部门负责人" prop="isLeader">
+        <el-switch
+          v-model="form.isLeader"
+          active-text="是"
+          inactive-text="否"
+        />
+      </el-form-item>
       <el-form-item label="工号" prop="empNo">
         <el-input v-model="form.empNo" placeholder="请输入工号" v-trim maxlength="50"/>
       </el-form-item>
@@ -37,10 +47,12 @@
 
 <script>
 import BaseOpera from '@/components/base/BaseOpera'
-import { checkMobile, checkEmail } from '@/core/utils/form'
+import DepartmentSelect from '@/components/system/department/DepartmentSelect'
+import { checkMobile, checkEmail <#noparse>}</#noparse> from '@/core/utils/form'
 
 export default {
   name: 'OperaUserWindow',
+  components: { DepartmentSelect <#noparse>}</#noparse>,
   extends: BaseOpera,
   data () {
     const _this = this
@@ -50,6 +62,8 @@ export default {
         id: null,
         username: '', // 用户名
         realName: '', // 姓名
+        departmentId: [], // 所在部门
+        isLeader: false, // 是否为部门负责人
         empNo: '', // 工号
         avatar: '/avatar/man.png', // 头像
         password: '', // 密码
@@ -57,33 +71,33 @@ export default {
         email: '', // 邮箱
         gender: _this.$c('DEFAULT_USER_GENDER'), // 性别
         birthday: '' // 生日
-      },
+      <#noparse>}</#noparse>,
       // 验证规则
       rules: {
         username: [
-          { required: true, message: '请输入用户名' }
+          { required: true, message: '请输入用户名' <#noparse>}</#noparse>
         ],
         realName: [
-          { required: true, message: '请输入姓名' }
+          { required: true, message: '请输入姓名' <#noparse>}</#noparse>
         ],
         password: [
-          { required: true, message: '请输入登录密码' }
+          { required: true, message: '请输入登录密码' <#noparse>}</#noparse>
         ],
         avatar: [
-          { required: true, message: '请选择用户头像' }
+          { required: true, message: '请选择用户头像' <#noparse>}</#noparse>
         ],
         sex: [
-          { required: true, message: '请选择用户性别' }
+          { required: true, message: '请选择用户性别' <#noparse>}</#noparse>
         ],
         mobile: [
-          { validator: checkMobile }
+          { validator: checkMobile <#noparse>}</#noparse>
         ],
         email: [
-          { validator: checkEmail }
+          { validator: checkEmail <#noparse>}</#noparse>
         ]
-      }
-    }
-  },
+      <#noparse>}</#noparse>
+    <#noparse>}</#noparse>
+  <#noparse>}</#noparse>,
   methods: {
     /**
      * 打开窗口
@@ -99,43 +113,62 @@ export default {
         this.$nextTick(() => {
           this.$refs.form.resetFields()
           this.form.id = null
-        })
+          this.form.departmentId = null
+          this.form.positionIds = []
+        <#noparse>}</#noparse>)
         return
-      }
+      <#noparse>}</#noparse>
       // 编辑
       this.$nextTick(() => {
         for (const key in this.form) {
           this.form[key] = target[key]
-        }
-      })
-    },
+        <#noparse>}</#noparse>
+        if (target.departments.length > 0) {
+          this.form.departmentId = target.departments[0].id
+        <#noparse>}</#noparse>
+        this.form.isLeader = target.isDepartmentLeader
+        this.form.departmentId = target.department == null ? null : target.department.id
+        this.form.positionIds = target.positions == null ? [] : target.positions.map(p => p.id)
+      <#noparse>}</#noparse>)
+    <#noparse>}</#noparse>,
     /**
      * 覆盖获取新增编辑表单对象，实现根据性别填充头像
      *
-     * @returns {*}
+     * @returns {*<#noparse>}</#noparse>
      * @private
      */
     __getForm () {
       this.form.avatar = '/avatar/man.png'
       if (this.form.sex === 'FEMALE') {
         this.form.avatar = '/avatar/woman.png'
-      }
-      return JSON.parse(JSON.stringify(this.form))
-    }
-  },
+      <#noparse>}</#noparse>
+      const form = JSON.parse(JSON.stringify(this.form))
+      // 增加部门ID集
+      form.departmentIds = []
+      if (form.departmentId != null) {
+        form.departmentIds = [form.departmentId]
+      <#noparse>}</#noparse>
+      if (form.departmentIds.length === 0) {
+        form.isLeader = false
+      <#noparse>}</#noparse>
+      // 删除部门ID
+      delete form.departmentId
+      return form
+    <#noparse>}</#noparse>
+  <#noparse>}</#noparse>,
   async created () {
     this.config({
       api: await import ('@/api/system/user')
-    })
-  }
-}
+    <#noparse>}</#noparse>)
+  <#noparse>}</#noparse>
+<#noparse>}</#noparse>
 </script>
 
 <style lang="scss" scoped>
 .global-window {
   :deep(.el-date-editor) {
     width: 100%;
-  }
+  <#noparse>}</#noparse>
   // 表单头像处理
   :deep(.form-item-avatar) {
     .el-radio.is-bordered {
@@ -144,16 +177,16 @@ export default {
       margin: 0 10px 0 0;
       .el-radio__input {
         display: none;
-      }
+      <#noparse>}</#noparse>
       .el-radio__label {
         padding: 0;
         width: 48px;
         display: block;
         img {
           width: 100%;
-        }
-      }
-    }
-  }
-}
+        <#noparse>}</#noparse>
+      <#noparse>}</#noparse>
+    <#noparse>}</#noparse>
+  <#noparse>}</#noparse>
+<#noparse>}</#noparse>
 </style>
