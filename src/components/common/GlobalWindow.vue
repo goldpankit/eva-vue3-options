@@ -12,7 +12,10 @@
   >
     <template #header>
       <div class="window__header">
-        <span class="header__btn-back" @click="close"><el-icon><ArrowLeft/></el-icon></span>{{title}}
+        <span class="header__btn-back" @click="close">
+          <el-icon><ArrowLeft/></el-icon>
+        </span>
+        {{title}}
       </div>
     </template>
     <div class="window__body">
@@ -106,6 +109,10 @@ $input-height: 32px;
     margin-right: 12px;
     border-right: 1px solid #eee;
     height: 100%;
+    .el-icon {
+      position: relative;
+      top: 2px;
+    }
   }
   // 头部标题
   .el-drawer__header {
