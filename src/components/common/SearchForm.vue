@@ -49,7 +49,7 @@ export default {
     },
     // 按钮占据的宽度
     buttonsWidth: {
-      default: '275px'
+      default: '215px'
     }
   },
   data () {
@@ -77,7 +77,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
-    align-items: flex-end;
+    align-items: center;
     .el-button {
       i {
         margin-left: 3px;
@@ -93,7 +93,7 @@ export default {
     height: 50px;
     overflow: hidden;
     section {
-      width: 300px;
+      width: 215px;
       position: absolute;
       margin-bottom: 20px;
       top: 0;

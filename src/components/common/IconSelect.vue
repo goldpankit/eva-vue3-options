@@ -1,9 +1,10 @@
 <template>
   <el-popover
-    v-model:visible="visible"
+    :visible="visible"
     popper-class="icon-select-popper"
     :width="popperWidth"
     trigger="click"
+    @update:visible="handleVisibleChange"
   >
     <Scrollbar>
       <ul v-if="filteredIcons.length > 0" class="icons" :style="{ width: iconsWidth }">
@@ -30,9 +31,16 @@
           'reference__with-value': value != null && value !== ''
         }"
       >
-        <el-input v-model="keyword" :readonly="!visible" placeholder="搜索图标" @click="handleInputClick">
+        <el-input
+          v-model="keyword"
+          :readonly="!visible"
+          placeholder="搜索图标"
+          @keyup.space="disallowHidden"
+          @keyup.enter="disallowHidden"
+          @click="disallowHidden"
+        >
           <template #prefix>
-            <Icon :data="selectedIcon"/>
+            <Icon :data="selectedIcon" @click="disallowHidden"/>
           </template>
         </el-input>
         <span class="opera-icon-wrap">
@@ -72,7 +80,9 @@ export default {
       // 搜索关键字
       keyword: '',
       // 图标列表
-      list: []
+      list: [],
+      // 是否不允许隐藏，用于处理点击输入框等部分时不隐藏选择框
+      disallow: false
     }
   },
   watch: {
@@ -107,6 +117,14 @@ export default {
     }
   },
   methods: {
+    // 处理visible变更
+    handleVisibleChange (value) {
+      if (this.visible && this.disallow) {
+        this.disallow = false
+        return
+      }
+      this.visible = value
+    },
     // 获取图标列表
     fetchAll () {
       fetchAll()
@@ -131,18 +149,19 @@ export default {
       const count = Math.floor(this.popperWidth / 85)
       return (count * 80) + 'px'
     },
-    // 处理输入框点击，避免打开选择面板后点击输入框关闭
-    handleInputClick (e) {
+    // 标记为不允许隐藏
+    disallowHidden () {
       if (this.visible) {
-        e.stopPropagation()
+        this.disallow = true
       }
-    },
-    close () {
-      this.visible = false
     }
   },
   created () {
     this.fetchAll()
+  },
+  mounted () {
+    this.popperWidth = this.$refs.reference.getBoundingClientRect().width
+    this.iconsWidth = this.calcIconsWidth()
   }
 }
 </script>
@@ -153,18 +172,18 @@ export default {
   // hover状态，展示清空
   &:hover {
     .reference__with-value {
-     .close-icon-wrap {
-       display: inline-flex !important;
-       justify-content: center;
-       align-items: center;
-       border: 1px solid #ccc;
-       border-radius: 50%;
-       i {
-         font-size: 12px;
-         transform: scale(0.80);
-       }
+      .close-icon-wrap {
+        display: inline-flex !important;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        i {
+          font-size: 12px;
+          transform: scale(0.80);
+        }
       }
-     .el-icon-arrow-down {
+      .el-icon-arrow-down {
         display: none !important;
       }
     }
@@ -213,7 +232,7 @@ export default {
   }
   // 输入框
   & > div {
-    :deep(.el-input) .el-input__inner {
+    ::v-deep(.el-input .el-input__inner) {
       padding-left: 30px;
       padding-right: 30px;
       cursor: pointer !important;
@@ -226,7 +245,7 @@ export default {
 .icon-select-popper {
   height: 300px;
   box-sizing: border-box;
-  .scrollbar .__view {
+  .el-scrollbar .el-scrollbar__view {
     display: flex;
     justify-content: center;
   }
