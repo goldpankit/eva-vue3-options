@@ -85,8 +85,11 @@ export default {
     }
   }
   // 表单样式
-  :deep(.el-form-item__content) {
-    min-width: 192px!important;
+  :deep(.el-form-item) {
+    display: inline-flex !important;
+    .el-form-item__content {
+      min-width: 192px !important;
+    }
   }
   // 隐藏状态
   &.collapse__hidden {
