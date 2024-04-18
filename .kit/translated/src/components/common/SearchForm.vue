@@ -49,7 +49,7 @@ export default {
     <#noparse>}</#noparse>,
     // 按钮占据的宽度
     buttonsWidth: {
-      default: '275px'
+      default: '215px'
     <#noparse>}</#noparse>
   <#noparse>}</#noparse>,
   data () {
@@ -77,7 +77,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
-    align-items: flex-end;
+    align-items: center;
     .el-button {
       i {
         margin-left: 3px;
@@ -85,15 +85,18 @@ export default {
     <#noparse>}</#noparse>
   <#noparse>}</#noparse>
   // 表单样式
-  :deep(.el-form-item__content) {
-    min-width: 192px!important;
+  :deep(.el-form-item) {
+    display: inline-flex !important;
+    .el-form-item__content {
+      min-width: 192px !important;
+    <#noparse>}</#noparse>
   <#noparse>}</#noparse>
   // 隐藏状态
   &.collapse__hidden {
     height: 50px;
     overflow: hidden;
     section {
-      width: 300px;
+      width: 215px;
       position: absolute;
       margin-bottom: 20px;
       top: 0;
