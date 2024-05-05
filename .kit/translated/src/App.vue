@@ -100,7 +100,8 @@ export default {
           // 添加菜单
           storeMenus.push.apply(storeMenus, menus)
           // 添加路由
-          this.__addRouters(storeMenus)
+          const viewsComponents = import.meta.glob('@/views/**/**.vue')
+          this.__addRouters(storeMenus, [], viewsComponents)
           // 404捕获，需要在路由添加完成后，将其添加到最后，避免刷新时路由还未加载直接出现404
           router.addRoute({
             path: '/:catchAll(.*)',
@@ -137,9 +138,10 @@ export default {
      *
      * @param routes 需添加的路由
      * @param parents 需添加到的目标列表
+     * @param viewComponents 页面组件
      * @private
      */
-    __addRouters (routes, parents = []) {
+    __addRouters (routes, parents = [], viewComponents) {
       if (routes == null || routes.length === 0) {
         return
       <#noparse>}</#noparse>
@@ -148,7 +150,7 @@ export default {
         const parentsDump = JSON.parse(JSON.stringify(parents))
         parentsDump.push(route)
         if (route.type === 'DIR') {
-          this.__addRouters(route.children, parentsDump)
+          this.__addRouters(route.children, parentsDump, viewComponents)
           continue
         <#noparse>}</#noparse>
         // 外链和嵌入链，不添加路由
@@ -156,22 +158,29 @@ export default {
           continue
         <#noparse>}</#noparse>
         if (rs.findIndex(r => r.path === route.path) > -1) {
-          this.__addRouters(route.children, parentsDump)
+          this.__addRouters(route.children, parentsDump, viewComponents)
           continue
         <#noparse>}</#noparse>
         if (this.homePage == null) {
           this.defaultStore.homePage = route
         <#noparse>}</#noparse>
-        router.addRoute('layout', {
-          path: route.uri,
-          name: route.name,
-          meta: {
-            title: route.name,
-            paths: [...parents.map(p => p.name), route.name]
-          <#noparse>}</#noparse>,
-          component: () => import(/* @vite-ignore */`./views<#noparse>${</#noparse>route.uri<#noparse>}</#noparse>`)
-        <#noparse>}</#noparse>)
-        this.__addRouters(route.children, parentsDump)
+        const viewComponent = viewComponents[`/src/views<#noparse>${</#noparse>route.uri<#noparse>}</#noparse>.vue`]
+        if (viewComponent != null) {
+          router.addRoute('layout', {
+            path: route.uri,
+            name: route.name,
+            meta: {
+              title: route.name,
+              paths: [...parents.map(p => p.name), route.name]
+            <#noparse>}</#noparse>,
+            component: viewComponent
+          <#noparse>}</#noparse>)
+        <#noparse>}</#noparse> else {
+          // 标记为不存在
+          route.__exists = false
+          console.error(`未找到路由组件：@/views<#noparse>${</#noparse>route.uri<#noparse>}</#noparse>.vue`)
+        <#noparse>}</#noparse>
+        this.__addRouters(route.children, parentsDump, viewComponents)
       <#noparse>}</#noparse>
     <#noparse>}</#noparse>,
     /**

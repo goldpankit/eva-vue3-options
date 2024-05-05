@@ -84,17 +84,6 @@ export default {
           this.$tip.error('未找到页面文件@/views' + menuConfig.uri + '.vue，请检查菜单路径是否正确')
           return
         <#noparse>}</#noparse>
-        // - 添加变量判断，避免重复import
-        if (menuConfig.__exists === undefined) {
-          try {
-            await import(/* @vite-ignore */ `../../views<#noparse>${</#noparse>menuConfig.uri<#noparse>}</#noparse>.vue`)
-            menuConfig.__exists = true
-          <#noparse>}</#noparse> catch (e) {
-            this.$tip.error('未找到页面文件@/views' + menuConfig.uri + '.vue，请检查菜单路径是否正确')
-            menuConfig.__exists = false
-            return
-          <#noparse>}</#noparse>
-        <#noparse>}</#noparse>
       <#noparse>}</#noparse>
       // 点击当前菜单不做处理
       if (menuConfig.uri === this.$route.path) {
