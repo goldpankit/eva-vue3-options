@@ -1,5 +1,5 @@
 export default {
-  inserted: function (el) {
+  mounted (el) {
     let input = el
     let classes = input.getAttribute('class') || ''
     if (classes != null) {
