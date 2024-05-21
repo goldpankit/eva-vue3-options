@@ -114,15 +114,12 @@ axiosInstance.interceptors.response.use((response) => {
   }
   // 下载接口处理
   if (response.headers[constants.HEADER_OPERA_TYPE] === 'download') {
-    return Promise.resolve(response)
-  }
-  // Blob类型数据，导出下载文件时，如果接口未正确执行，返回类型为Blob
-  if (response.config.responseType === 'blob') {
+    // 正确执行
+    if (response.data.type !== 'application/json') {
+      return Promise.resolve(response)
+    }
+    // 未正确执行
     return new Promise((resolve, reject) => {
-      if (response.data.type !== 'application/json') {
-        resolve(response)
-        return
-      }
       const blob = new Blob([response.data])
       const fileReader = new FileReader()
       // 读取Blob内容

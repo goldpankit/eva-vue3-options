@@ -6,7 +6,7 @@
     :show-file-list="false"
     :on-success="handleUploadSuccess"
   >
-    <div v-if="value" class="upload-info">
+    <div v-if="modelValue" class="upload-info">
       <Icon :icon-class="iconClass"/>
       <p>{{filename<#noparse>}</#noparse><#noparse>}</#noparse></p>
     </div>
@@ -28,7 +28,7 @@ export default {
       default: 'iconfont icon-file1'
     <#noparse>}</#noparse>,
     // 文件的fileKey
-    value: {<#noparse>}</#noparse>,
+    modelValue: {<#noparse>}</#noparse>,
     // 文件名称
     filename: {
       default: '文件已上传'
@@ -41,7 +41,7 @@ export default {
         this.$tip.apiFailed(res)
         return
       <#noparse>}</#noparse>
-      this.$emit('input', res.data.fileKey)
+      this.$emit('update:modelValue', res.data.fileKey)
       this.$emit('success', res.data)
     <#noparse>}</#noparse>
   <#noparse>}</#noparse>
