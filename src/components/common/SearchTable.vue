@@ -82,10 +82,12 @@
 </template>
 
 <script>
+import BaseComponent from '@/components/BaseComponent'
 
 export default {
   name: 'SearchTable',
   emits: ['update:fullscreen', 'refresh', 'selection-change'],
+  extends: BaseComponent,
   props: {
     // 同el-table data
     data: {
@@ -161,13 +163,6 @@ export default {
     }
   },
   methods: {
-    // 计算属性
-    computeProp (propName) {
-      if (typeof this[propName] === 'function') {
-        return this[propName]()
-      }
-      return this[propName]
-    },
     /**
      * 处理全屏&缩放
      */
