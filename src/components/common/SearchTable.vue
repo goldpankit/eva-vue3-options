@@ -272,6 +272,7 @@ export default {
         display: flex;
         align-items: center;
         font-size: 13px;
+        word-break: break-all;
       }
       // 操作列
       &.opera-column {
