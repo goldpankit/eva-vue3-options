@@ -33,16 +33,6 @@
 
 结合GoldPanKit可实现代码直接生成到项目中，安装更多的功能模块，一键修复BUG等，是国内目前唯一一套技术栈可定制、功能模块可定制、代码生成分离和支持BUG一键修复的开源系统。
 
-## 技术支持 && 领取 GoldPanKit 15天账号
-
-您可以使用微信扫描下方二维码加入技术交流群！
-
-<img src="public/wechat.png" alt="加入技术交流群"/>
-
-成功加入交流群后，可使用抖音扫描下方二维码关注作者并领取15天GoldPanKit账号！
-
-<img src="public/douyin.png" alt="免费获得15天GoldPanKit账号"/>
-
 ## 项目预览
 **登录页**
 ![输入图片说明](public/preview/1.png)

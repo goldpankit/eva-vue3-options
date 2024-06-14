@@ -60,9 +60,9 @@ export default defineComponent({
     return {
       loading: false,
       form: {
-        username: '',
-        password: '',
-        code: '',
+        username: 'admin',
+        password: '123123',
+        code: 'any',
         uuid: ''
       },
       rules: {
