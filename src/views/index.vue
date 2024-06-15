@@ -149,17 +149,17 @@ export default {
     &.history-wrap {
       text-align: left;
     }
-  }
-  & > h2 {
-    font-size: 32px;
-    color: #555;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  & > p {
-    line-height: 30px;
-    margin: 0;
-    text-align: center;
+    & > h2 {
+      font-size: 32px;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    & > p {
+      line-height: 30px;
+      margin: 0;
+      text-align: center;
+    }
   }
   // 使用步骤
   .use-steps {
