@@ -82,10 +82,12 @@
 </template>
 
 <script>
+import BaseComponent from '@/components/BaseComponent'
 
 export default {
   name: 'SearchTable',
   emits: ['update:fullscreen', 'refresh', 'selection-change'],
+  extends: BaseComponent,
   props: {
     // 同el-table data
     data: {
@@ -161,13 +163,6 @@ export default {
     <#noparse>}</#noparse>
   <#noparse>}</#noparse>,
   methods: {
-    // 计算属性
-    computeProp (propName) {
-      if (typeof this[propName] === 'function') {
-        return this[propName]()
-      <#noparse>}</#noparse>
-      return this[propName]
-    <#noparse>}</#noparse>,
     /**
      * 处理全屏&缩放
      */
@@ -272,6 +267,7 @@ export default {
         display: flex;
         align-items: center;
         font-size: 13px;
+        word-break: break-all;
       <#noparse>}</#noparse>
       // 操作列
       &.opera-column {

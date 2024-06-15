@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="public/logo.png" width="120px" style="width:80px;height:80px;" />
+  <h1>Eva4</h1>
+  <h2>致敬每一个技术人</h2>
+</div>
+
 ## 技术栈 & 版本信息
 为了更容易让Vue2使用者上手，工程采用选项式开发，未来我们也会提供TS版。具体技术栈如下：
 - 框架：Vue 3.4.21

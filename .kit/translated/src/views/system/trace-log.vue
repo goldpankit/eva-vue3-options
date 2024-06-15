@@ -59,11 +59,11 @@
       </SearchForm>
     </template>
     <template #space>
-      <div class="status-bar">
-        <label class="status-normal">正常</label>
-        <label class="status-warn">警告异常(需排查)</label>
-        <label class="status-danger">系统异常(需修复)</label>
-      </div>
+      <ColorsMarking :data="[
+        { backgroundColor: '#fff', borderColor: '#ccc', label: '正常'<#noparse>}</#noparse>,
+        { backgroundColor: 'oldlace', borderColor: 'orange', label: '警告异常(需排查)'<#noparse>}</#noparse>,
+        { backgroundColor: '#fdf0f0', borderColor: 'indianred', label: '系统异常(需修复)'<#noparse>}</#noparse>
+      ]"/>
     </template>
     <!-- 表格和分页 -->
     <template #table-wrap>
@@ -157,8 +157,10 @@
 import { mapState <#noparse>}</#noparse> from 'pinia'
 import BaseTable from '@/components/base/BaseTable'
 import { useDefaultStore <#noparse>}</#noparse> from '@/core/store'
+import ColorsMarking from "@/components/common/ColorsMarking.vue";
 
 export default {
+  components: {ColorsMarking<#noparse>}</#noparse>,
   extends: BaseTable,
   data () {
     return {
@@ -236,34 +238,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// 状态栏
-.status-bar {
-  padding: 0 16px;
-  [class^=status-] {
-    font-size: 13px;
-    margin-right: 12px;
-    line-height: 40px;
-    &::before {
-      position: relative;
-      top: 2px;
-      display: inline-block;
-      content: '';
-      width: 12px;
-      height: 12px;
-      border: 1px solid #ccc;
-      background: #fff;
-      margin-right: 6px;
-    <#noparse>}</#noparse>
-  <#noparse>}</#noparse>
-  .status-warn::before {
-    background-color: oldlace;
-    border-color: orange;
-  <#noparse>}</#noparse>
-  .status-danger::before {
-    background-color: #fdf0f0;
-    border-color: indianred;
-  <#noparse>}</#noparse>
-<#noparse>}</#noparse>
 :deep(.table-content) {
   margin-top: 0;
 <#noparse>}</#noparse>
