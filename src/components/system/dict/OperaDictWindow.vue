@@ -36,9 +36,10 @@
           v-model="form.remark"
           type="textarea"
           placeholder="请输入备注"
-          :rows="3"
+          :rows="5"
+          show-word-limit
           v-trim
-          maxlength="500"
+          maxlength="200"
         />
       </el-form-item>
     </el-form>

@@ -13,7 +13,7 @@
         <el-input v-model="form.name" placeholder="请输入角色名称" v-trim maxlength="50"/>
       </el-form-item>
       <el-form-item label="角色备注" prop="remark">
-        <el-input v-model="form.remark" type="textarea" placeholder="请输入角色备注" :rows="5" v-trim maxlength="500"/>
+        <el-input v-model="form.remark" type="textarea" placeholder="请输入角色备注" :rows="5" show-word-limit v-trim maxlength="200"/>
       </el-form-item>
     </el-form>
   </GlobalWindow>

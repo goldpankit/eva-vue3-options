@@ -18,7 +18,7 @@
         <FormItemTip>其它配置用于针对数据值进行更具体的配置，以方便直接根据配置做业务处理！</FormItemTip>
       </el-form-item>
       <el-form-item label="备注" prop="remark">
-        <el-input type="textarea" v-model="form.remark" placeholder="请输入备注" v-trim maxlength="200"/>
+        <el-input type="textarea" v-model="form.remark" :rows="5" show-word-limit placeholder="请输入备注" v-trim maxlength="200"/>
       </el-form-item>
       <el-form-item label="状态" prop="disabled" required class="form-item-status">
         <el-switch v-model="form.disabled" :active-value="false" :inactive-value="true"/>

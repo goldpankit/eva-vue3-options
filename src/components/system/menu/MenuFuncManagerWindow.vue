@@ -41,6 +41,11 @@
           <el-table-column type="selection" width="55"/>
           <el-table-column prop="name" label="功能名称" min-width="100px"/>
           <el-table-column prop="permission" label="权限标识符" min-width="150px"/>
+          <el-table-column prop="remark" label="备注" min-width="150px">
+            <template #default="{ row }">
+              <PopoverCellValue :content="row.remark" :with-opera="false"/>
+            </template>
+          </el-table-column>
           <el-table-column prop="creatorRealName" label="创建人" min-width="100px"/>
           <el-table-column prop="createdAt" label="创建时间" min-width="165px"/>
           <el-table-column prop="updaterRealName" label="更新人" min-width="100px"/>

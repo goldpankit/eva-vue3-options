@@ -27,9 +27,11 @@
       <el-form-item label="备注" prop="remark">
         <el-input
           type="textarea"
+          :rows="5"
           v-model="form.remark"
           placeholder="请输入备注"
           v-trim
+          show-word-limit
           maxlength="200"
         />
       </el-form-item>
