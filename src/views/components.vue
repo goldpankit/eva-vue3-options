@@ -162,7 +162,7 @@
                   <SearchTable
                     style="width: 100%;"
                     :data="searchTableData.table3.list"
-                    digest="当前页存在2条记录信息待不全！"
+                    digest="当前页存在2条记录信息待补全！"
                     digest-type="warning"
                     :with-fullscreen="false"
                     :with-refresh="false"
