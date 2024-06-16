@@ -7,7 +7,7 @@
       :maxlength="maxlength"
       :show-password="withShowPassword && type === 'password'"
       autocomplete="new-password"
-      @input="$emit('update:modelValue', $event)"
+      @update:modelValue="$emit('update:modelValue', $event)"
       @keydown.enter="$emit('enter', $event)"
     />
   </div>

@@ -135,6 +135,70 @@
         </div>
       </div>
     </el-card>
+    <!-- Light/状态灯 -->
+    <el-card>
+      <template #header>
+        <h3>Light/状态灯</h3>
+      </template>
+      <div class="component-wrap">
+        <div class="demo light-demo">
+          <ul>
+            <li>
+              <h4>默认</h4>
+              <Light/>
+            </li>
+            <li>
+              <h4>警告灯</h4>
+              <Light type="warning"/>
+            </li>
+            <li>
+              <h4>危险灯</h4>
+              <Light type="danger"/>
+            </li>
+            <li>
+              <h4>改变尺寸</h4>
+              <div>
+                <Light size="small" style="margin-right: 30px;"/>
+                <Light size="default" style="margin-right: 30px;"/>
+                <Light size="large"/>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </el-card>
+    <!-- DictSelect & DictRadioGroup & DictCheckboxGroup.vue/字典选择器 -->
+    <el-card>
+      <template #header>
+        <h3>DictSelect & DictRadioGroup & DictCheckboxGroup.vue/字典选择器</h3>
+      </template>
+      <div class="component-wrap">
+        <div class="demo dict-demo">
+          <ul>
+            <li>
+              <h4>下拉选择</h4>
+              <DictSelect code="GENDERS" v-model="dictData.value1" style="width: 120px;"/>
+              <span class="selected-value">已选：{{ dictData.value1 }}</span>
+            </li>
+            <li>
+              <h4>下拉选择（多选）</h4>
+              <DictSelect code="GENDERS" v-model="dictData.value4" :multiple="true" style="width: 150px;"/>
+              <span class="selected-value">已选：{{ dictData.value4.join(',') }}</span>
+            </li>
+            <li>
+              <h4>Radio选择</h4>
+              <DictRadioGroup code="GENDERS" v-model="dictData.value2"/>
+              <span class="selected-value">已选：{{ dictData.value2 }}</span>
+            </li>
+            <li>
+              <h4>Checkbox多选</h4>
+              <DictCheckboxGroup code="GENDERS" v-model="dictData.value3"/>
+              <span class="selected-value">已选：{{ dictData.value3.join(',') }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </el-card>
     <GlobalWindow ref="globalWindow1" v-model:visible="globalWindowData.demo1.visible" :title="globalWindowData.demo1.title"/>
     <GlobalWindow ref="globalWindow2" v-model:visible="globalWindowData.demo2.visible" :title="globalWindowData.demo2.title" :with-footer="false"/>
     <GlobalWindow ref="globalWindow3" v-model:visible="globalWindowData.demo3.visible" :title="globalWindowData.demo3.title" width="1000px"/>
@@ -172,10 +236,12 @@
 
 <script>
 import Value from '@/components/common/Value'
+import Light from "@/components/common/Light.vue";
 
 export default {
   name: 'demonstration',
   components: {
+    Light,
     Value
   },
   data () {
@@ -214,6 +280,13 @@ export default {
           visible: false,
           title: '自定义窗口内容'
         }
+      },
+      // 字段选择
+      dictData: {
+        value1: null,
+        value2: null,
+        value3: [],
+        value4: []
       }
     }
   },
@@ -310,6 +383,20 @@ export default {
     }
     .el-button {
       margin-top: 20px;
+    }
+  }
+  // Light
+  .light-demo {
+    .light {
+      flex-grow: 0 !important;
+    }
+  }
+  // Dict
+  .dict-demo {
+    span {
+      color: #999;
+      font-size: 13px;
+      margin-top: 5px;
     }
   }
 }

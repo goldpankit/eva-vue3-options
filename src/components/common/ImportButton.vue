@@ -19,7 +19,7 @@ export default {
     title: {
       default: '导入Excel数据'
     },
-    // 模版地址
+    // 模版文件存放地址（后端提供，路径从files开始）
     templatePath: {
       required: true
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="light" :class="{normal: !warn && !danger, warn: !danger && warn, danger, mini: mini}">
+  <div class="light" :class="{[`light__${type}`]: true, [`light-size__${size}`]: true}">
     <em><i></i></em>
   </div>
 </template>
@@ -8,20 +8,15 @@
 export default {
   name: 'Light',
   props: {
-    // 警告
-    warn: {
-      type: Boolean,
-      default: false
+    // 类型，不同类型对应不同颜色，取值：default, warn, danger
+    type: {
+      type: String,
+      default: 'default'
     },
-    // 危险
-    danger: {
-      type: Boolean,
-      default: false
-    },
-    // 最小尺寸
-    mini: {
-      type: Boolean,
-      default: false
+    // 尺寸，取值：large, default, small
+    size: {
+      type: String,
+      default: 'default'
     }
   }
 }
@@ -30,7 +25,7 @@ export default {
 <style scoped lang="scss">
 $cycle-size01: 16px;
 $cycle-size02: 6px;
-$normal-color: #00CC99;
+$default-color: #00CC99;
 $warn-color: #ffcc33;
 $danger-color: #FF3300;
 @mixin light-status ($cycle-bg) {
@@ -58,40 +53,56 @@ $danger-color: #FF3300;
       border-radius: 50%;
     }
   }
-  &.mini {
+  // 小号
+  &-size__small {
     em {
       width: 12px;
       height: 12px;
+      i {
+        width: 4px;
+        height: 4px;
+      }
     }
   }
-  // 正常
-  &.normal {
-    @include light-status($normal-color);
+  // 大号
+  &-size__large {
+    em {
+      width: 20px;
+      height: 20px;
+      i {
+        width: 8px;
+        height: 8px;
+      }
+    }
+  }
+  // 默认
+  &__default {
+    @include light-status($default-color);
     animation: shine-normal infinite 1s;
   }
   // 警告
-  &.warn {
+  &__warning {
     @include light-status($warn-color);
     animation: shine-warn infinite .8s;
   }
   // 危险
-  &.danger {
+  &__danger {
     @include light-status($danger-color);
     animation: shine-danger infinite .5s;
   }
 }
 @keyframes shine-normal {
   0% {
-    box-shadow: 0 0 5px darken($normal-color, 10);
+    box-shadow: 0 0 5px darken($default-color, 10);
   }
   25% {
-    box-shadow: 0 0 10px darken($normal-color, 10);
+    box-shadow: 0 0 10px darken($default-color, 10);
   }
   50% {
-    box-shadow: 0 0 15px darken($normal-color, 10);
+    box-shadow: 0 0 15px darken($default-color, 10);
   }
   100% {
-    box-shadow: 0 0 20px darken($normal-color, 10);
+    box-shadow: 0 0 20px darken($default-color, 10);
   }
 }
 @keyframes shine-warn {
