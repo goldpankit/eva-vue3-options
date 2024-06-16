@@ -1,19 +1,18 @@
 <template>
   <el-tree-select
     :class="{inline}"
-    :model-value="value"
+    :model-value="modelValue"
     :data="data"
     :placeholder="placeholder"
     :render-after-expand="false"
-    no-data-text="无记录"
-    no-match-text="未匹配到数据"
+    empty-text="无记录"
+    :node-key="nodeKey"
     :multiple="multiple"
-    check-strictly
-    :show-checkbox="!flat"
+    :check-strictly="checkStrictly"
+    :show-checkbox="showCheckbox"
     :clearable="clearable"
-    @change="change"
-    @check="checkChange"
-    @remove-tag="deleteCheck"
+    :check-on-click-node="true"
+    @update:modelValue="$emit('update:modelValue', $event)"
   />
 </template>
 
@@ -26,18 +25,22 @@ export default {
     }
   },
   props: {
+    modelValue: {},
+    nodeKey: {},
     inline: {
       default: false
     },
     multiple: {
       default: false
     },
-    flat: {
-      default: false
+    showCheckbox: {
+      default: true
     },
-    value: {},
     placeholder: {
       default: '请选择'
+    },
+    checkStrictly: {
+      default: true
     },
     // 是否可清空
     clearable: {
@@ -47,21 +50,6 @@ export default {
     data: {
       type: Array,
       required: true
-    }
-  },
-  methods: {
-    // 复选框勾选
-    checkChange (val) {
-      if (!this.multiple) return
-      this.$emit('update:value', val)
-    },
-    change (val) {
-      if (this.multiple) return
-      this.$emit('update:value', val)
-    },
-    // 多选框删除tag
-    deleteCheck (val) {
-      this.$emit('update:delete', val)
     }
   }
 }

@@ -1,12 +1,13 @@
 <template>
   <TreeSelect
     :placeholder="placeholder"
-    :value="value"
+    :modelValue="modelValue"
     :data="data"
     :append-to-body="appendToBody"
     :clearable="clearable"
     :inline="inline"
-    @input="$emit('input', $event)"
+    node-key="value"
+    @update:modelValue="$emit('update:modelValue', $event)"
   />
 </template>
 
@@ -18,7 +19,7 @@ export default {
   name: 'MenuSelect',
   components: { TreeSelect },
   props: {
-    value: {},
+    modelValue: {},
     inline: {
       default: true
     },

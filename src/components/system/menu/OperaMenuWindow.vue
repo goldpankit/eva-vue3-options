@@ -11,7 +11,6 @@
     <el-form :model="form" ref="form" :rules="rules">
       <el-form-item label="上级菜单" prop="parentId">
         <MenuSelect
-          v-if="visible"
           v-model="form.parentId"
           placeholder="请选择上级菜单"
           :exclude-id="excludeMenuId"
