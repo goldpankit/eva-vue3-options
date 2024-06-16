@@ -26,19 +26,25 @@ export default {
   },
   props: {
     modelValue: {},
+    // 详见el-tree
     nodeKey: {},
+    // 是否与同级元素展示在同一行
     inline: {
       default: false
     },
+    // 详见el-select
     multiple: {
       default: false
     },
+    // 详见el-tree
     showCheckbox: {
       default: true
     },
+    // 详见el-select
     placeholder: {
       default: '请选择'
     },
+    // 详见el-tree
     checkStrictly: {
       default: true
     },
@@ -47,6 +53,7 @@ export default {
       default: false,
       type: Boolean
     },
+    // 详见el-tree
     data: {
       type: Array,
       required: true
