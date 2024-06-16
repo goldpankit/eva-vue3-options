@@ -500,6 +500,28 @@
         </div>
       </div>
     </el-card>
+    <!-- RichText/富文本 -->
+    <el-card>
+      <template #header>
+        <h3>RichText/富文本</h3>
+      </template>
+      <div class="component-wrap">
+        <div class="demo title-left">
+          <ul>
+            <li style="width: 100%">
+              <h4>默认</h4>
+              <RichEditor v-model="richTextData.value" height="300px"/>
+            </li>
+            <li style="width: 100%">
+              <h4>只读</h4>
+              <RichEditor v-model="richTextData.value1" height="300px" :with-toolbar="false" :editorConfig="{
+                readOnly: true
+              }"/>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </el-card>
     <GlobalWindow ref="globalWindow1" v-model:visible="globalWindowData.demo1.visible" :title="globalWindowData.demo1.title"/>
     <GlobalWindow ref="globalWindow2" v-model:visible="globalWindowData.demo2.visible" :title="globalWindowData.demo2.title" :with-footer="false"/>
     <GlobalWindow ref="globalWindow3" v-model:visible="globalWindowData.demo3.visible" :title="globalWindowData.demo3.title" width="1000px"/>
@@ -539,10 +561,12 @@
 import Value from '@/components/common/Value'
 import Light from "@/components/common/Light.vue";
 import ColorsMarking from "@/components/common/ColorsMarking.vue";
+import RichEditor from '@/components/common/RichEditor';
 
 export default {
   name: 'demonstration',
   components: {
+    RichEditor,
     ColorsMarking,
     Light,
     Value
@@ -650,6 +674,11 @@ export default {
         value2: null,
         value3: [],
         value4: []
+      },
+      // 富文本
+      richTextData: {
+        value: '',
+        value1: `<h1>Eva是一套完全开源免费的后台权限系统解决方案，全职团队研发和维护！</h1>`
       }
     }
   },

@@ -1,19 +1,20 @@
 <template>
   <div class="rich-editor">
     <Toolbar
+      v-if="withToolbar"
       :editor="instance"
       :defaultConfig="toolbarConfig"
       :mode="mode"
     />
     <Editor
       :style="{ height }"
-      :value="value"
+      :modelValue="modelValue"
       :defaultConfig="{
         placeholder: this.placeholder,
         ...this.editorConfig
       }"
       :mode="mode"
-      @onChange="$emit('update:value', $event.getHtml())"
+      @onChange="$emit('update:modelValue', $event.getHtml())"
       @onCreated="handleCreated"
     />
   </div>
@@ -29,7 +30,7 @@ export default {
   },
   props: {
     // 值
-    value: {
+    modelValue: {
       type: String,
       required: true
     },
@@ -44,6 +45,10 @@ export default {
     // 编辑器模式
     mode: {
       default: 'simple'
+    },
+    // 是否展示工具栏
+    withToolbar: {
+      default: true
     },
     // 工具栏配置，详见https://www.wangeditor.com/v5/toolbar-config.html#toolbarkeys
     toolbarConfig: {
@@ -84,6 +89,7 @@ export default {
 <style src="@wangeditor/editor/dist/css/style.css"></style>
 <style lang="scss">
 .rich-editor {
+  width: 100%;
   height: 100%;
   overflow: hidden;
   display: flex;
