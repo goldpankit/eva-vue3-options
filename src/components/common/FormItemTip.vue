@@ -1,6 +1,6 @@
 <template>
   <p class="form-item-tip" :style="{ color }">
-    <Icon v-if="withIcon" :icon-class="iconClass"/>
+    <slot name="icon"><Icon v-if="withIcon" :icon-class="iconClass"/></slot>
     <slot></slot>
   </p>
 </template>
@@ -15,7 +15,7 @@ export default {
     },
     // 字体颜色
     color: {
-      default: '#999'
+      default: '#a0721e'
     },
     // 图标class
     iconClass: {
@@ -29,14 +29,12 @@ export default {
 .form-item-tip {
   line-height: 20px;
   font-size: 13px;
-  color: #999;
   margin: 6px 0 0 0;
   .icon {
     font-size: 16px;
     margin-right: 5px;
     position: relative;
     top: 2px;
-    color: orange;
   }
 }
 </style>

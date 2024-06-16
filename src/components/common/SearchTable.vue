@@ -109,10 +109,6 @@ export default {
     },
     // 同el-table row-class-name
     rowClassName: {},
-    // 同el-alert type
-    digestType: {
-      default: 'info'
-    },
     // 全屏标识
     fullscreen: {
       type: Boolean,
@@ -122,6 +118,10 @@ export default {
     digest: {
       type: String,
       required: false
+    },
+    // 同el-alert type
+    digestType: {
+      default: 'info'
     },
     // 是否包含刷新
     withRefresh: {
@@ -248,6 +248,9 @@ export default {
   // 摘要
   .digest-content {
     margin-bottom: 10px;
+    :deep(.el-alert) {
+      padding: 8px 16px !important;
+    }
   }
   // 表格
   :deep(.el-table) {
@@ -268,6 +271,14 @@ export default {
         align-items: center;
         font-size: 13px;
         word-break: break-all;
+        // 使用el的tooltip进行文字提示
+        &.el-tooltip {
+          line-height: 32px;
+          white-space: nowrap;
+          min-width: 50px;
+          overflow: hidden;
+          display: block;
+        }
       }
       // 操作列
       &.opera-column {
