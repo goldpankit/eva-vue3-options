@@ -51,7 +51,7 @@
         :data="tableData.list"
         :default-sort = "{ prop: 'createdAt', order: 'descending' }"
         v-model:fullscreen="fullscreen"
-        buttons-width="310px"
+        buttons-width="320px"
         @refresh="refresh"
         @selection-change="handleSelectionChange"
         @sort-change="handleSortChange"
@@ -71,6 +71,7 @@
           >新建</el-button>
           <el-button
             v-if="userInfo.isSuperAdmin || $hasPermissions(['system:user:delete'])"
+            type="danger"
             icon="Delete"
             @click="deleteByIdInBatch"
           >删除</el-button>

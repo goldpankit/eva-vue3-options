@@ -49,6 +49,7 @@
           >新建</el-button>
           <el-button
             v-permissions="['system:config:delete']"
+            type="danger"
             icon="Delete"
             @click="deleteByIdInBatch"
           >删除</el-button>
@@ -90,7 +91,7 @@
             link
           >编辑</el-button>
           <el-button
-            type="primary"
+            type="danger"
             icon="Delete"
             v-permissions="['system:config:delete']"
             @click="deleteById(row)"

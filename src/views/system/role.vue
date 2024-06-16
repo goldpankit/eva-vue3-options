@@ -40,7 +40,7 @@
     <template #table-wrap>
       <SearchTable
         v-loading="isWorking.search"
-        buttons-width="310px"
+        buttons-width="225px"
         :data="tableData.list"
         :default-sort = "{ prop: 'createAt', order: 'descending' }"
         v-model:fullscreen="fullscreen"
@@ -65,6 +65,7 @@
           >新建</el-button>
           <el-button
             v-if="userInfo.isSuperAdmin || $hasAnyPermissions(['system:role:delete'])"
+            type="danger"
             icon="Delete"
             @click="deleteByIdInBatch"
           >删除</el-button>

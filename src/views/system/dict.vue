@@ -43,7 +43,7 @@
         v-loading="isWorking.search"
         :data="tableData.list"
         :default-sort = "{ prop: 'createdAt', order: 'descending' }"
-        buttons-width="220px"
+        buttons-width="225px"
         :opera-permissions="['system:dict:update', 'system:dict:delete']"
         v-model:fullscreen="fullscreen"
         @selection-change="handleSelectionChange"
@@ -65,6 +65,7 @@
           >新建</el-button>
           <el-button
             v-permissions="['system:dict:delete']"
+            type="danger"
             icon="Delete"
             @click="deleteByIdInBatch"
           >删除</el-button>

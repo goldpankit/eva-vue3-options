@@ -32,6 +32,7 @@
           >新建</el-button>
           <el-button
             v-permissions="['system:menu:delete']"
+            type="danger"
             icon="Delete"
             @click="deleteByIdInBatch"
           >删除</el-button>

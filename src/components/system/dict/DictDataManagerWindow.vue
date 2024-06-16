@@ -33,6 +33,7 @@
             >新建</el-button>
             <el-button
               v-permissions="['system:dict:data:delete']"
+              type="danger"
               icon="Delete"
               @click="deleteByIdInBatch"
             >删除</el-button>
