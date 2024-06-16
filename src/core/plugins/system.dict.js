@@ -7,6 +7,7 @@ function getStore () {
 
 /**
  * 根据编码表达式获取字典或数据标签
+ *
  * @param codeExpress 编码表达式
  *  语法1：“字典编码.数据编码”，如GENDER.MALE
  *  语法2：“字典编码”，如GENDER
@@ -37,6 +38,7 @@ function getDictLabel (codeExpress) {
 
 /**
  * 根据编码表达式获取字典数据配置
+ *
  * @param codeExpress 编码表达式
  *  语法：“字典编码.数据编码”，如GENDER.MALE
  */

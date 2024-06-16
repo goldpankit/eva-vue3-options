@@ -57,16 +57,6 @@ function createLoginWindow () {
   return loginWindowApp.mount(document.createElement('div'))
 }
 
-/**
- * 打开登录窗口
- */
-export const openLoginFormWindow = function () {
-  // 打开窗口
-  setTimeout(() => {
-    createLoginWindow().open()
-  }, 300)
-}
-
 // 新建请求拦截器
 axiosInstance.interceptors.request.use(config => {
   // 参数去空格
@@ -114,12 +104,15 @@ axiosInstance.interceptors.response.use((response) => {
   }
   // 下载接口处理
   if (response.headers[constants.HEADER_OPERA_TYPE] === 'download') {
-    // 正确执行
-    if (response.data.type !== 'application/json') {
-      return Promise.resolve(response)
-    }
-    // 未正确执行
+    return Promise.resolve(response)
+  }
+  // Blob类型数据，导出下载文件时，如果接口未正确执行，返回类型为Blob
+  if (response.config.responseType === 'blob') {
     return new Promise((resolve, reject) => {
+      if (response.data.type !== 'application/json') {
+        resolve(response)
+        return
+      }
       const blob = new Blob([response.data])
       const fileReader = new FileReader()
       // 读取Blob内容
@@ -176,6 +169,9 @@ axiosInstance.interceptors.response.use((response) => {
   if (error.code == null) {
     return Promise.reject(new Error(constants.DEFAULT_ERROR_MESSAGE))
   }
+  if (error.response.status === 500) {
+    return Promise.reject(new Error('服务器繁忙，请稍后再试'))
+  }
   if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
     return Promise.reject(new Error('服务器响应超时，请稍后再试'))
   }
@@ -188,5 +184,17 @@ axiosInstance.cache = cache
 axiosInstance.twoFA = twoFA
 // 添加安全方法，实现参数加密和响应的自动解密
 axiosInstance.secure = secure
+
+/**
+ * 打开登录窗口
+ */
+export const openLoginFormWindow = function () {
+  // 防重复打开
+  if (document.querySelector('.login-form-window') != null) {
+    return
+  }
+  // 打开登录窗口
+  createLoginWindow().open()
+}
 
 export default axiosInstance

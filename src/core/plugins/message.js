@@ -5,6 +5,7 @@ export default {
   ...ElMessage,
   /**
    * 接口调用成功
+   *
    * @param message 提示消息
    */
   apiSuccess (message) {
@@ -12,6 +13,7 @@ export default {
   },
   /**
    * 接口调用失败
+   *
    * @param err 错误对象
    */
   apiFailed (err) {

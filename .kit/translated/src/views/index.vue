@@ -17,13 +17,13 @@
       <ul class="images-wrap">
         <li>
           <div class="img-wrap">
-            <img src="/wechat.png" alt="微信">
+            <img src="https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/wechat.png" alt="微信">
           </div>
           <span>添加作者微信，加入交流群</span>
         </li>
         <li>
           <div class="img-wrap">
-            <img src="/douyin.png" alt="关注作者">
+            <img src="https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/douyin.png" alt="关注作者">
           </div>
           <span>关注抖音不迷路</span>
         </li>

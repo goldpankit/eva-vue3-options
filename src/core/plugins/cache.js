@@ -48,6 +48,7 @@ class ValuePackage {
 
   /**
    * 验证是否为正确的值包
+   *
    * @returns {boolean}
    */
   isCorrectPackage () {
@@ -72,6 +73,7 @@ class Cache {
 
   /**
    * 缓存构造器
+   *
    * @param cacheType 缓存类型，从plugins/consts.js/CACHE_TYPE中获取
    */
   constructor (cacheType) {

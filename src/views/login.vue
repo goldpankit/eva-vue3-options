@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="introduce">
       <h2>伊娃权限基础工程 V4.0</h2>
-      <h3>由清华海峡研究院高端装备技术研究中心与清华海峡研究院联合研发，全职团队维护，开源免费，无版权！</h3>
+      <h3>清华海峡研究院高端装备技术研究中心研发，全职团队维护，开源免费，无版权！</h3>
     </div>
     <div class="login">
       <LoginForm @success="handleSuccess"/>

@@ -7,6 +7,7 @@ function getStore () {
 
 /**
  * 根据配置编码获取配置值
+ *
  * @param code 配置编码
  */
 function getConfigValue (code) {

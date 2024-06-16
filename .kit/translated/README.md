@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/logo.png" width="120px" style="width:80px;height:80px;" />
+  <h1>Eva4</h1>
+  <h2>致敬每一个技术人</h2>
+</div>
+
 ## 技术栈 & 版本信息
 为了更容易让Vue2使用者上手，工程采用选项式开发，未来我们也会提供TS版。具体技术栈如下：
 - 框架：Vue 3.4.21
@@ -30,31 +36,31 @@
 
 ## 项目预览
 **登录页**
-![输入图片说明](public/preview/1.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/1.png)
 
 **首页**
-![输入图片说明](public/preview/2.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/2.png)
 
 **用户管理**
-![输入图片说明](public/preview/3.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/3.png)
 
 **角色管理**
-![输入图片说明](public/preview/4.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/4.png)
 
 **菜单管理**
-![输入图片说明](public/preview/5.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/5.png)
 
 **系统配置**
-![输入图片说明](public/preview/6.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/6.png)
 
 **字典管理**
-![输入图片说明](public/preview/7.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/7.png)
 
 **操作日志**
-![输入图片说明](public/preview/8.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/8.png)
 
 **登录日志**
-![输入图片说明](public/preview/9.png)
+![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/9.png)
 
 ## 常见问题
 
