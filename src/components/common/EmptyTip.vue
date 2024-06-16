@@ -1,5 +1,9 @@
 <template>
-  <el-empty :image-size="imageSize" :description="description">
+  <el-empty
+    :image-size="imageSize"
+    :description="description"
+    :class="{ 'el-empty__no-text': !description }"
+  >
     <slot></slot>
   </el-empty>
 </template>
@@ -14,11 +18,16 @@ export default {
     },
     // 同el-empty description
     description: {
-      default: ''
+      default: '暂无数据'
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.el-empty.el-empty__no-text {
+  :deep(.el-empty__description) {
+    display: none !important;
+  }
+}
 </style>

@@ -6,7 +6,7 @@
     :with-header="true"
     :size="width"
     :close-on-press-escape="closeOnPressEscape"
-    :wrapper-closable="wrapperClosable"
+    :close-on-click-modal="wrapperClosable"
     :append-to-body="true"
     @close="close"
   >
