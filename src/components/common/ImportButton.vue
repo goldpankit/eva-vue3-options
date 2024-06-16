@@ -1,6 +1,6 @@
 <template>
   <div class="import-button">
-    <el-button @click="$refs.importWindow.open(text)">{{text}}</el-button>
+    <el-button :type="type" @click="$refs.importWindow.open(title)"><slot>导入</slot></el-button>
     <ImportWindow :action="action" :template-path="templatePath" :template-name="templateName" ref="importWindow" @success="handleSuccess"/>
   </div>
 </template>
@@ -11,9 +11,13 @@ export default {
   name: 'ImportButton',
   components: { ImportWindow },
   props: {
-    // 按钮文案
-    text: {
-      default: '导入'
+    // type，同el-button type
+    type: {
+      default: 'primary'
+    },
+    // 导入窗口文案
+    title: {
+      default: '导入Excel数据'
     },
     // 模版地址
     templatePath: {

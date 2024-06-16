@@ -119,6 +119,22 @@
         </div>
       </div>
     </el-card>
+    <!-- ImportButton/导入按钮 -->
+    <el-card>
+      <template #header>
+        <h3>ImportButton/导入按钮</h3>
+      </template>
+      <div class="component-wrap">
+        <div class="demo loading-demo">
+          <ul>
+            <li>
+              <h4>默认</h4>
+              <ImportButton action="#" template-name="下载后的名称.txt" template-path="本地测试文件.txt"/>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </el-card>
     <GlobalWindow ref="globalWindow1" v-model:visible="globalWindowData.demo1.visible" :title="globalWindowData.demo1.title"/>
     <GlobalWindow ref="globalWindow2" v-model:visible="globalWindowData.demo2.visible" :title="globalWindowData.demo2.title" :with-footer="false"/>
     <GlobalWindow ref="globalWindow3" v-model:visible="globalWindowData.demo3.visible" :title="globalWindowData.demo3.title" width="1000px"/>
