@@ -7,7 +7,7 @@ import FormItemTip from '@/components/common/FormItemTip'
 import GlobalWindow from '@/components/common/GlobalWindow'
 import Icon from '@/components/common/Icon'
 import ImportButton from '@/components/common/ImportButton'
-import AppLoading from '@/components/common/AppLoading'
+import DataLoading from '@/components/common/DataLoading'
 import Pagination from '@/components/common/Pagination'
 import PopoverCellValue from '@/components/common/PopoverCellValue'
 import TagCellValue from '@/components/common/TagCellValue'
@@ -26,7 +26,7 @@ export default {
     Vue.component('GlobalWindow', GlobalWindow)
     Vue.component('Icon', Icon)
     Vue.component('ImportButton', ImportButton)
-    Vue.component('AppLoading', AppLoading)
+    Vue.component('DataLoading', DataLoading)
     Vue.component('Pagination', Pagination)
     Vue.component('PopoverCellValue', PopoverCellValue)
     Vue.component('TagCellValue', TagCellValue)
