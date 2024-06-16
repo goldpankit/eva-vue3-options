@@ -1,7 +1,7 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.3.0.1",
+  "version": "4.3.0.2",
   "private": false,
   "receivable": false,
   "compiler": "freemarker",
