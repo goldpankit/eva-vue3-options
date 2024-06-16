@@ -1,7 +1,7 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.3.0.0",
+  "version": "4.3.0.1",
   "private": false,
   "receivable": false,
   "compiler": "freemarker",
@@ -37,7 +37,7 @@
       "inputType": "input",
       "required": false,
       "hidden": false,
-      "defaultValue": "由清华海峡研究院高端装备技术研究中心与清华海峡研究院联合研发，全职团队维护，开源免费，无版权！",
+      "defaultValue": "清华海峡研究院高端装备技术研究中心研发，全职团队维护，开源免费，无版权！",
       "compiler": "static",
       "remark": ""
     },
