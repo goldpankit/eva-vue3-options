@@ -13,6 +13,14 @@ export function downloadLocalFile (params) {
   })
 }
 
+// 下载OSS文件
+export function downloadOSSFile (params) {
+  return request.get('/resource/oss/attach', {
+    params,
+    download: true
+  })
+}
+
 // 根据密码登录
 export function loginByPassword (data) {
   return request.secure().post('/system/login', data)
