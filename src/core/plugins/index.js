@@ -37,6 +37,9 @@ export default {
     app.config.globalProperties.$isDebugging = import.meta.env.VITE_APP_DEBUG === 'on'
     // 获取图片访问路径
     app.config.globalProperties.$getImageURL = (fileKey) => {
+      if (fileKey.startsWith('http://') || fileKey.startsWith('https://')) {
+        return fileKey
+      }
       return import.meta.env.VITE_APP_COMMON_IMAGE_PREFIX + fileKey
     }
     // 获取附件下载路径
