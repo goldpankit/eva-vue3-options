@@ -6,7 +6,7 @@
     :show-file-list="false"
     :on-success="handleUploadSuccess"
   >
-    <img v-if="value" :src="$getImageURL(value)" class="avatar" alt="头像">
+    <img v-if="modelValue" :src="$getImageURL(modelValue)" class="avatar" alt="头像">
     <el-icon v-else class="avatar-uploader-icon">
       <Plus/>
     </el-icon>
@@ -19,7 +19,7 @@ export default {
   name: 'AvatarUploader',
   props: {
     // 头像fileKey
-    value: {}
+    modelValue: {}
   },
   computed: {},
   methods: {
@@ -29,7 +29,7 @@ export default {
         this.$tip.apiFailed(res)
         return
       }
-      this.$emit('input', res.data.fileKey)
+      this.$emit('update:modelValue', res.data.fileKey)
       this.$emit('success', res.data)
     }
   }
