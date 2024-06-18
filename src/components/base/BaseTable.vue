@@ -161,12 +161,12 @@ export default {
         .then(data => {
           // 分页接口，填充列表数据和分页数据
           if (api === this.api.fetchPage) {
-            this.tableData.list = data.records
+            this.tableData.list = this.__handleTableData(data.records)
             this.tableData.pagination.total = data.total
             return
           }
           // 查询所有接口，填充列表数据
-          this.tableData.list = data
+          this.tableData.list = this.__handleTableData(data)
         })
         .catch(e => {
           this.$tip.apiFailed(e)
@@ -281,6 +281,15 @@ export default {
       if (this.api == null) {
         throw new Error('页面没有使用config方法进行初始化，无法使用BaseTable提供的属性和方法。')
       }
+    },
+    /**
+     * 处理列表数据
+     *
+     * @param data 列表数据
+     * @private
+     */
+    __handleTableData (data) {
+      return data
     }
   }
 }

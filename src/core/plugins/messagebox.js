@@ -61,6 +61,21 @@ export default {
     })
   },
   /**
+   * 启用二次确认
+   *
+   * @param message 消息内容
+   * @param extConfig 扩展配置
+   * @returns {Promise}
+   */
+  enableConfirm (message, extConfig = {}) {
+    return ElMessageBox.confirm(message, '启用提醒', {
+      confirmButtonText: '确认启用',
+      cancelButtonText: '取消',
+      type: 'warning',
+      ...extConfig
+    })
+  },
+  /**
    * 导出二次确认
    *
    * @param message 消息内容
