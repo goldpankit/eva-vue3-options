@@ -1,7 +1,7 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.3.0.2",
+  "version": "4.3.1.0",
   "private": false,
   "receivable": false,
   "compiler": "freemarker",
@@ -25,7 +25,7 @@
       "inputType": "input",
       "required": true,
       "hidden": false,
-      "defaultValue": "伊娃权限基础工程 Vue3选项式 V4.0",
+      "defaultValue": "伊娃权限基础工程 V4.0",
       "compiler": "static",
       "remark": ""
     },
@@ -85,7 +85,7 @@
         "name": "登录页项目说明处理",
         "path": ".*login.vue",
         "type": "pattern",
-        "source": "由清华海峡研究院高端装备技术研究中心与清华海峡研究院联合研发，全职团队维护，开源免费，无版权！",
+        "source": "清华海峡研究院高端装备技术研究中心研发，全职团队维护，开源免费，无版权！",
         "target": "${loginDescription}",
         "code": ""
       },
@@ -95,6 +95,14 @@
         "type": "pattern",
         "source": "伊娃权限系统",
         "target": "${menuTitle}",
+        "code": ""
+      },
+      {
+        "name": "修改系统title",
+        "path": ".*index.html",
+        "type": "pattern",
+        "source": "伊娃4-高效率、高规范的权限系统",
+        "target": "${loginTitle}",
         "code": ""
       }
     ]
