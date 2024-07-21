@@ -1,10 +1,10 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.3.1.0",
+  "version": "4.3.1.1",
   "private": false,
   "receivable": false,
-  "compiler": "freemarker",
+  "compiler": "static",
   "repository": "https://gitee.com/goldpankit/eva-vue3-options",
   "branch": "",
   "supportedDatabases": [],
@@ -56,58 +56,39 @@
   ],
   "translator": {
     "output": ".kit/translated",
-    "settings": [
-      {
-        "name": "${}表达式处理",
-        "path": ".*",
-        "type": "code",
-        "source": "",
-        "target": "",
-        "code": "  if (content == null) {\n    return {filepath: filepath, content: content};\n  }\n  if (fileSetting.compiler === 'static') {\n    return {filepath: filepath, content: content};\n  }\n  content = content.replace(/\\${/g, '<#noparse>${</#noparse>')\n  content = content.replace(/}/g, '<#noparse>}</#noparse>')\n  return {filepath: filepath, content: content};"
-      },
-      {
-        "name": "#{}表达式处理",
-        "path": ".*",
-        "type": "code",
-        "source": "",
-        "target": "",
-        "code": "  if (content == null) {\n    return {filepath: filepath, content: content};\n  }\n  if (fileSetting.compiler === 'static') {\n    return {filepath: filepath, content: content};\n  }\n  if (filepath.split('/').pop() === 'pom.xml') {\n    return {filepath: filepath, content: content};\n  }\n  content = content.replace(/#{/g, '<#noparse>#{</#noparse>')\n  return {filepath: filepath, content: content};"
-      },
-      {
-        "name": "登录页项目名称处理",
-        "path": ".*login.vue",
-        "type": "pattern",
-        "source": "伊娃权限基础工程 V4.0",
-        "target": "${loginTitle}",
-        "code": ""
-      },
-      {
-        "name": "登录页项目说明处理",
-        "path": ".*login.vue",
-        "type": "pattern",
-        "source": "清华海峡研究院高端装备技术研究中心研发，全职团队维护，开源免费，无版权！",
-        "target": "${loginDescription}",
-        "code": ""
-      },
-      {
-        "name": "菜单顶部项目名称处理",
-        "path": ".*Menu.vue",
-        "type": "pattern",
-        "source": "伊娃权限系统",
-        "target": "${menuTitle}",
-        "code": ""
-      },
-      {
-        "name": "修改系统title",
-        "path": ".*index.html",
-        "type": "pattern",
-        "source": "伊娃4-高效率、高规范的权限系统",
-        "target": "${loginTitle}",
-        "code": ""
-      }
-    ]
+    "filepath": "",
+    "content": "// freemarker语法修复\nif (setting.compiler === 'freemarker') {\n    content = content\n      .replace(/\\$\\{/g, '<#noparse>${</#noparse>')\n      .replace(/\\#\\{/g, '<#noparse>${</#noparse>')\n}\n\n// login.vue内容替换\nif (filename === 'login.vue') {\n    content = content\n      .replace(/<h2>.*<\\/h2>/, '<h2>${loginTitle}</h2>')\n      .replace(/<h3>.*<\\/h3>/, '<h3>${loginDescription}</h3>')\n}\n\n// index.html内容替换\nif (filename === 'index.html') {\n    content = content\n      .replace(/<title>.*<\\/title>/, '<title>${loginTitle}</title>')\n}\n\n// AppMenu替换菜单顶部标题\nif (filename === 'AppMenu.vue') {\n    content = content\n      .replace('伊娃权限系统', '${menuTitle}')\n}\n\nreturn content"
   },
-  "settings": [],
+  "settings": [
+    {
+      "path": "src/App.vue",
+      "compiler": "freemarker",
+      "withoutIfNotExists": false,
+      "enableExpress": "",
+      "variables": []
+    },
+    {
+      "path": "index.html",
+      "compiler": "freemarker",
+      "withoutIfNotExists": false,
+      "enableExpress": "",
+      "variables": []
+    },
+    {
+      "path": "src/views/login.vue",
+      "compiler": "freemarker",
+      "withoutIfNotExists": false,
+      "enableExpress": "",
+      "variables": []
+    },
+    {
+      "path": "src/components/layout/AppMenu.vue",
+      "compiler": "freemarker",
+      "withoutIfNotExists": false,
+      "enableExpress": "",
+      "variables": []
+    }
+  ],
   "introduce": "🇨🇳一套基于Vue3、SASS、Element-Plus、Pinia的权限管理基础工程前端，采用Options写法，方便Vue2使用者快速上手，可与任意eva系权限系统后端结合使用来完成权限系统的研发。",
   "readme": "<div style=\"display:flex;flex-direction: column; justify-content:center;align-items: center;margin-bottom:50px\">\n  <img src=\"/resource/image?f=66bae969-333f-4f5e-9ef4-e755b13fa0d4.png\" style=\"width:100px;height:100px;margin: 20px 0;\"/>\n  <h1 style=\"margin: 10px 0 0 0;font-size: 18px;\">Eva4 - 致敬每一个技术人</h1>\n</div>\n\n## 服务介绍\n当前为Eva的前端Vue3版本，UI库为Element-Plus，样式预编译采用sass，安装服务时只需要指定「登录页项目标题」和「登录页项目说明」以及「菜单顶部项目名称」即可快速构建项目。\n\n## 参数介绍\n|参数名称|参数说明|\n|-|-|\n|登录页项目标题|用于展示在登录页面|\n|登录页项目说明|用于展示在标题的下方，对项目进行一个描述|\n|菜单顶部项目名称|用于展示在菜单顶部，一般为项目缩写，字数过多会引起样式不正确，需手动在Menu.vue中做调整。|\n\n## 技术栈 & 版本信息\n为了更容易让Vue2使用者上手，工程采用选项式开发，未来我们也会提供TS版。具体技术栈如下：\n- 框架：Vue 3.4.21\n- 编码风格：选项式\n- UI库：Element-Plus 2.6.2\n- 预编译：SASS 1.72.0\n- 状态管理：Pinia 2.1.7\n- 构建工具：Vite 5.2.0\n- Node版本：v18.15.0\n- Volta：支持\n\n## 在线演示 & 技术文档\n- 演示地址：[http://online-v4.eva.adjustrd.com/](http://online-v4.eva.adjustrd.com/)\n- 接口文档：[http://online-v4.eva.adjustrd.com/api/doc/auth.html](http://online-v4.eva.adjustrd.com/api/doc/auth.html)\n- 技术文档：[http://v4.eva.adjustrd.com/](http://v4.eva.adjustrd.com/)\n\n超级管理员账号：admin/123123\n\n## 项目特点\n1. 可扩展的功能模块，默认情况下提供了用户管理、角色管理、菜单管理、字典管理、操作日志、登录日志模块，使用GoldPanKit可进一步进行源码级功能模块的扩展，如部门模块等。\n2. 不用担心存在BUG，如果存在BUG，使用GoldPanKit可实现一键升级。\n3. 不用担心存在安全漏洞，如果存在安全漏洞，GoldPanKit会进行提醒并支持一键升级。\n4. 规范化代码 + 详细的代码注释。\n5. 合理封装，经过Eva3 8000+项目的实践经验，进行常用功能合理的封装。\n6. 丰富的插件市场，可使用GoldPanKit进行单表、多表的页面生成。\n\n## 绝对优势\n\n结合GoldPanKit可实现代码直接生成到项目中，安装更多的功能模块，一键修复BUG等，是国内目前唯一一套技术栈可定制、功能模块可定制、代码生成分离和支持BUG一键修复的开源系统。\n\n## 项目预览\n**登录页**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/1.png)\n\n**首页**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/2.png)\n\n**用户管理**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/3.png)\n\n**角色管理**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/4.png)\n\n**菜单管理**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/5.png)\n\n**系统配置**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/6.png)\n\n**字典管理**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/7.png)\n\n**操作日志**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/8.png)\n\n**登录日志**\n![输入图片说明](https://adjustrd-public.oss-cn-shenzhen.aliyuncs.com/eva/9.png)\n\n## 常见问题\n\n#### Error: error:0308010C:digital envelope routines::unsupported\n在执行`yarn serve`或`npm run serve`启动项目时，出现`Error: error:0308010C:digital envelope routines::unsupported`错误。说明当前node版本过高，node 17及以上，则会出现该问题，解决方法如下：\n\n###### MAC\n先执行以下命令\n```\nexport NODE_OPTIONS=--openssl-legacy-provider\n```\n再执行`yarn serve`或`npm run serve`启动项目。\n\n###### Windows\n先执行以下命令\n```\nset NODE_OPTIONS=--openssl-legacy-provider\n```\n再执行`yarn serve`或`npm run serve`启动项目。"
 }

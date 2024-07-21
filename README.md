@@ -9,6 +9,16 @@
 - [构建前端工程](http://goldpankit.com/space/Eva/vue3-options)。
 - [构建后端工程](http://goldpankit.com/space/Eva/eva-springboot)。
 
+## 运行
+
+```bash
+# 安装依赖
+npm install --registry=https://registry.npmmirror.com
+
+# 启动服务
+npm run serve
+```
+
 ## 技术栈 & 版本信息
 为了更容易让Vue2使用者上手，工程采用选项式开发，未来我们也会提供TS版。具体技术栈如下：
 - 框架：Vue 3.4.21
