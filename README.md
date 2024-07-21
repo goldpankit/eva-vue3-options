@@ -4,8 +4,10 @@
   <h2>致敬每一个技术人</h2>
 </div>
 
-## 修改包名
-为了让代码本身更贴近项目，我们将代码发布在了GoldPanKit上，可以直接使用GoldPanKit构建->[去改包](http://goldpankit.com/space/Eva/eva-springboot)。
+## 使用GoldPanKit构建
+为了让代码本身更贴近项目，我们将代码发布在了GoldPanKit上，可以直接使用GoldPanKit构建！
+- [构建前端工程](http://goldpankit.com/space/Eva/vue3-options)。
+- [构建后端工程](http://goldpankit.com/space/Eva/eva-springboot)。
 
 ## 技术栈 & 版本信息
 为了更容易让Vue2使用者上手，工程采用选项式开发，未来我们也会提供TS版。具体技术栈如下：
