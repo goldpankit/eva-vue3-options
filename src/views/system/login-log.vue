@@ -5,7 +5,7 @@
   >
     <!-- 搜索表单 -->
     <template #search-form>
-      <SearchForm ref="searchForm" :model="searchForm" :collapse="true">
+      <SearchForm ref="searchForm" :model="searchForm" :collapse="true" buttons-width="275px">
         <el-form-item label="登录用户名" prop="loginUsername">
           <el-input v-model="searchForm.loginUsername" placeholder="请输入登录用户名" @keypress.enter="search"></el-input>
         </el-form-item>
