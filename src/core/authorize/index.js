@@ -1,6 +1,15 @@
 import { useDefaultStore } from '../store'
 
 class Authorizer {
+  // 判断是否为超级管理员
+  isSuperAdmin = () => {
+    const userInfo = this.#getStore().userInfo
+    if (userInfo == null) {
+      return false
+    }
+    return userInfo.isSuperAdmin
+  }
+
   // 判断是否包含所有角色
   hasRoles = (roles) => {
     roles = this.#handleParameter(roles)

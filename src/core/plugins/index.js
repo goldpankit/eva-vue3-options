@@ -55,6 +55,7 @@ export default {
     app.config.globalProperties.$hasAnyRoles = authorizer.hasAnyRoles
     app.config.globalProperties.$hasPermissions = authorizer.hasPermissions
     app.config.globalProperties.$hasAnyPermissions = authorizer.hasAnyPermissions
+    app.config.globalProperties.$isSuperAdmin = authorizer.isSuperAdmin
     // 全局过滤方法
     app.config.globalProperties.$filters = filters
     // 自定义事件

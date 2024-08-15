@@ -189,12 +189,18 @@ export default {
      * @param tab tab实例
      */
     handleTabClick (tab) {
+      // 超级管理员
+      if (this.$isSuperAdmin()) {
+        this.permissionTabs.systemConfig.visible = true
+        return
+      }
+      // 非超级管理员，检查是否拥有系统配置菜单权限
       if (tab.name === 'systemConfig') {
         this.permissionTabs.systemConfig.visible = false
-        // 非超级管理员
         const menus = this.$refs.menuTree.getCheckedNodes(false, true)
           // 筛选出有效的权限
           .filter(item => item.type === 'menu' && item.id > 0)
+        // 判断是否存在系统配置菜单
         if (menus.find(item => item.permission === 'system:config:query') != null) {
           this.permissionTabs.systemConfig.visible = true
         }
