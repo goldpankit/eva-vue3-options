@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import AppLayout from '@/layouts/AppLayout'
-import { getUserInfo } from '@/api/system'
 import { useDefaultStore } from '@/core/store'
+import Message from '@/core/plugins/message'
 const Login = () => import('@/views/login')
 const Error = () => import('@/views/error')
 // 路由模式
@@ -63,27 +63,24 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  getUserInfo()
-    .then(userInfo => {
-      // 初始化客户端配置，避免客户端配置还未获取到导致页面渲染不能获取到配置信息
-      defaultStore.initClientConfig()
-        .then(config => {
-          // 存储userInfo
-          defaultStore.userInfo = userInfo
-          // 存储客户端配置
-          defaultStore.clientConfig = config
-          next()
-        })
-        .catch(() => {
-          next({
-            name: 'error',
-            params: {
-              type: 'config-load-failed'
-            }
-          })
-        })
+  defaultStore.refreshUserInfo()
+    .then(() => {
+      next()
     })
-    .catch(() => {
+    .catch(e => {
+      // 提示错误
+      Message.apiFailed(e)
+      // 指定了错误类型，跳转到错误页面，错误页面将根据错误类型作出提示
+      if (e.type !== undefined) {
+        next({
+          name: 'error',
+          params: {
+            type: e.type
+          }
+        })
+        return
+      }
+      // 其它情况，跳转到登录页
       next({ name: 'login' })
     })
 })

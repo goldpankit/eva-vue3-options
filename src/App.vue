@@ -1,5 +1,6 @@
 <template>
   <router-view/>
+  <LoginFormWindow/>
 </template>
 
 <script>
@@ -9,8 +10,10 @@ import router from '@/router'
 import { useDefaultStore} from '@/core/store'
 import { mapState, mapActions } from 'pinia'
 import { fetchUserMenus } from '@/api/system/index'
+import LoginFormWindow from '@/components/system/LoginFormWindow'
 
 export default {
+  components: {LoginFormWindow},
   data () {
     return {
       loading: false

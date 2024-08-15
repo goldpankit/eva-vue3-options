@@ -20,34 +20,23 @@
 
 <script>
 import LoginForm from '@/components/system/LoginForm'
-import { getUserInfo } from '@/api/system'
 
 export default {
   name: 'LoginFormWindow',
   components: { LoginForm },
-  data () {
-    return {
-      visible: false
+  computed: {
+    visible () {
+      return this.$defaultStore.visibleLoginWindow
     }
   },
   methods: {
-    /**
-     * 打开窗口
-     */
-    open () {
-      this.visible = true
-    },
     /**
      * 关闭窗口
      * 关闭窗口时，移除DOM节点
      */
     close () {
       setTimeout(() => {
-        const domWindow = document.querySelector('.login-form-window')
-        if (domWindow != null) {
-          const domOverlay = domWindow.parentNode.parentNode
-          domOverlay.parentNode.removeChild(domOverlay)
-        }
+        this.$defaultStore.visibleLoginWindow = false
       }, 300)
     },
     /**
@@ -56,10 +45,10 @@ export default {
      */
     handleSuccess () {
       this.visible = false
-      getUserInfo()
-        .then(data => {
-          this.$defaultStore.userInfo = data
-        })
+      // 重置状态数据
+      this.$defaultStore.$reset()
+      // 刷新用户信息
+      this.$defaultStore.refreshUserInfo()
         .catch(e => {
           this.$tip.apiFailed(e)
         })

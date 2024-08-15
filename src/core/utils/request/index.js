@@ -6,16 +6,8 @@ import twoFA from './request.2fa'
 import secure from './request.secure'
 import constants from '@/core/plugins/consts'
 import AES from '../aes'
-import LoginFormWindow from '@/components/system/LoginFormWindow'
 import { trim } from '@/core/utils/util'
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import ElementPlus from 'element-plus'
-import zhCn from 'element-plus/dist/locale/zh-cn'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import directives from '@/core/directives/index'
-import plugins from '@/core/plugins'
-import components from '@/components'
+import { useDefaultStore } from '@/core/store/index'
 
 const isDebug = import.meta.env.VITE_APP_DEBUG === 'on'
 // 输出日志
@@ -34,28 +26,6 @@ const axiosInstance = axios.create({
   // 请求超时时间
   timeout: 60000
 })
-
-/**
- * 创建登录窗口
- */
-function createLoginWindow () {
-  const loginWindowApp = createApp(LoginFormWindow)
-  // - 注入Pinia
-  loginWindowApp.use(createPinia())
-  // - 注入组件库
-  loginWindowApp.use(ElementPlus, { locale: zhCn })
-  // - 注入自定义指令
-  loginWindowApp.use(directives)
-  // - 注入插件
-  loginWindowApp.use(plugins)
-  // - 注入自定义全局组件
-  loginWindowApp.use(components)
-  // - 注入图标
-  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-    loginWindowApp.component(key, component)
-  }
-  return loginWindowApp.mount(document.createElement('div'))
-}
 
 // 新建请求拦截器
 axiosInstance.interceptors.request.use(config => {
@@ -165,13 +135,15 @@ axiosInstance.interceptors.response.use((response) => {
   }
   return Promise.resolve(response.data.data)
 }, function (error) {
-  console.log('error', error)
-  if (error.code == null) {
+  // 客户端错误
+  if (error.response.status >= 400 && error.response.status < 500) {
+    return Promise.reject(new Error(`客户端错误，请检查参数，状态码：${error.response.status}`))
+  }
+  // 服务端错误
+  if (error.response.status >= 500 && error.response.status < 600) {
     return Promise.reject(new Error(constants.DEFAULT_ERROR_MESSAGE))
   }
-  if (error.response.status === 500) {
-    return Promise.reject(new Error('服务器繁忙，请稍后再试'))
-  }
+  // 请求超时
   if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
     return Promise.reject(new Error('服务器响应超时，请稍后再试'))
   }
@@ -189,12 +161,7 @@ axiosInstance.secure = secure
  * 打开登录窗口
  */
 export const openLoginFormWindow = function () {
-  // 防重复打开
-  if (document.querySelector('.login-form-window') != null) {
-    return
-  }
-  // 打开登录窗口
-  createLoginWindow().open()
+  useDefaultStore().visibleLoginWindow = true
 }
 
 export default axiosInstance

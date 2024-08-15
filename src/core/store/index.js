@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { fetchConfig } from '@/api/system'
+import { fetchConfig, getUserInfo } from '@/api/system'
 
 export const useDefaultStore = defineStore('default', {
   state: () => ({
@@ -16,6 +16,8 @@ export const useDefaultStore = defineStore('default', {
       // 是否收起
       collapse: false
     },
+    // 是否展示登录窗口
+    visibleLoginWindow: false,
     // 缓存内容
     cache: {}
   }),
@@ -30,10 +32,33 @@ export const useDefaultStore = defineStore('default', {
       window.localStorage.setItem('MENU_STATUS', this.menuData.collapse)
     },
     /**
-     * 初始化客户端配置
+     * 刷新用户信息
      */
-    initClientConfig () {
-      return fetchConfig()
+    refreshUserInfo () {
+      return new Promise((resolve, reject) => {
+        getUserInfo()
+          .then(userInfo => {
+            // 初始化客户端配置，避免客户端配置还未获取到导致页面渲染不能获取到配置信息
+            fetchConfig()
+              .then(config => {
+                // 存储登录用户信息
+                this.userInfo = userInfo
+                // 存储客户端配置
+                this.clientConfig = config
+                resolve({ userInfo, config })
+              })
+              .catch(e => {
+                reject({
+                  // 指定错误类型，用于路由至错误页
+                  type: 'config-load-failed',
+                  message: e.message
+                })
+              })
+          })
+          .catch(e => {
+            reject(e)
+          })
+      })
     }
   }
 })

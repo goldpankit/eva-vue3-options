@@ -29,18 +29,9 @@
       </template>
       <!-- 客户端配置加载失败 -->
       <template v-else-if="errorType === 'config-load-failed'">
-        <div class="message">
-          <h1>系统配置加载失败</h1>
-          <div class="opera">
-            <el-button @click="$router.back()">返回</el-button>
-            <el-button type="primary" @click="$router.push({ name: 'index' })">前往首页</el-button>
-          </div>
-        </div>
-        <div class="suggestion">
-          <h2>你可以尝试以下操作</h2>
-          <p>1. 刷新页面</p>
-          <p>2. 检查网络是否正常</p>
-          <p>3. 联系系统管理员</p>
+        <div class="left">
+          <img src="../../public/images/system/error.png" alt="未知错误">
+          <p>系统配置加载失败，请联系系统管理员或稍后重试！</p>
         </div>
       </template>
       <!-- 未知错误 -->
