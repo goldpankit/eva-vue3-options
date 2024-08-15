@@ -16,6 +16,11 @@ import LoginForm from '@/components/system/LoginForm'
 export default {
   name: 'Login',
   components: { LoginForm },
+  data () {
+    return {
+      message: ''
+    }
+  },
   methods: {
     /**
      * 登录成功
@@ -23,6 +28,9 @@ export default {
     handleSuccess () {
       window.location.href = import.meta.env.VITE_APP_CONTEXT_PATH
     }
+  },
+  created () {
+    this.message = import.meta.env.VITE_APP_TEST
   }
 }
 </script>
