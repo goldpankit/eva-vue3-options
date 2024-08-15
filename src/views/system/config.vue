@@ -60,14 +60,19 @@
         </template>
         <el-table-column type="selection" fixed="left" width="55"/>
         <el-table-column prop="name" label="配置名称" min-width="140px"/>
-        <el-table-column prop="code" label="配置编码" min-width="140px"/>
+        <el-table-column prop="scope" label="作用域" min-width="140px">
+          <template #default="{ row }">
+            {{ $d(`CONFIG_SCOPES.${row.scope}`) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="code" label="配置编码" min-width="200px"/>
         <el-table-column prop="value" label="配置值" min-width="100px">
           <template #default="{ row }">
             <PopoverCellValue :content="row.value"/>
           </template>
         </el-table-column>
-        <el-table-column prop="permission" label="权限标识符" min-width="120px"/>
-        <el-table-column prop="remark" label="备注" min-width="100px">
+        <el-table-column prop="permission" label="权限标识符" min-width="150px"/>
+        <el-table-column prop="remark" label="备注" min-width="200px">
           <template #default="{ row }">
             <PopoverCellValue :content="row.remark"/>
           </template>
