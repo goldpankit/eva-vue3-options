@@ -307,6 +307,7 @@ export default {
   async created () {
     this.config({
       module: '菜单',
+      'field.main': 'name',
       api: await import('@/api/system/menu')
     })
     this.search()

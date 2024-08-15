@@ -165,6 +165,7 @@ export default {
   async created () {
     this.config({
       module: '角色',
+      'field.main': 'name',
       api: await import('@/api/system/role'),
       sorts: [{
         property: 'role.created_at',

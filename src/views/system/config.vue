@@ -151,8 +151,8 @@ export default {
   async created () {
     this.config({
       module: '系统配置',
+      'field.main': 'name',
       api: await import('@/api/system/config'),
-      'field.main': 'code',
       sorts: []
     })
     this.search()

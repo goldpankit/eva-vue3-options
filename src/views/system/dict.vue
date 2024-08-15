@@ -178,6 +178,7 @@ export default {
   async created () {
     this.config({
       module: '字典',
+      'field.main': 'name',
       api: await import('@/api/system/dict'),
       sorts: [{
         property: 'dict.created_at',

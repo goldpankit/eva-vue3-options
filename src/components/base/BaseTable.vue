@@ -12,7 +12,7 @@ export default {
         // id字段
         'field.id': 'id',
         // 主字段
-        'field.main': 'name'
+        'field.main': null
       },
       // 是否全屏
       fullscreen: false,
@@ -190,8 +190,14 @@ export default {
     deleteById (row, childConfirm = true) {
       this.__checkApi()
       let message = `确认删除${this.module}【${row[this.configData['field.main']]}】吗?`
+      if (row[this.configData['field.main']] == null) {
+        message = `确认删除该${this.module}吗？`
+      }
       if (childConfirm && row.children != null && row.children.length > 0) {
         message = `确认删除${this.module}【${row[this.configData['field.main']]}】及其子${this.module}吗?`
+        if (row[this.configData['field.main']] == null) {
+          message = `确认删除该${this.module}及其子${this.module}吗？`
+        }
       }
       this.$dialog.deleteConfirm(message)
         .then(() => {

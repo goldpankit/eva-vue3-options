@@ -205,8 +205,8 @@ export default {
   },
   async created () {
     this.config({
-      api: await import('@/api/system/dict.data'),
-      'field.main': 'label'
+      'field.main': 'label',
+      api: await import('@/api/system/dict.data')
     })
   }
 }

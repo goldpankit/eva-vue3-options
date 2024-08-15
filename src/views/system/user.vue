@@ -276,8 +276,8 @@ export default {
   async created () {
     this.config({
       module: '用户',
-      api: await import('@/api/system/user'),
       'field.main': 'realName',
+      api: await import('@/api/system/user'),
       sorts: [{
         property: 'created_at',
         direction: 'DESC'

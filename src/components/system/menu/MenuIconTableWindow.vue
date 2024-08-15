@@ -141,6 +141,7 @@ export default {
   async created () {
     this.config({
       module: '系统图标',
+      'field.main': 'name',
       api: await import('@/api/system/icon'),
       sorts: []
     })
