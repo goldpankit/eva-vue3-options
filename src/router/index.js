@@ -72,10 +72,7 @@ router.beforeEach((to, from, next) => {
           defaultStore.userInfo = userInfo
           // 存储客户端配置
           defaultStore.clientConfig = config
-          // 等待动态路由加载
-          setTimeout(() => {
-            next()
-          }, 100)
+          next()
         })
         .catch(() => {
           next({
