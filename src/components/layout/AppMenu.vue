@@ -6,6 +6,7 @@
     </div>
     <Scrollbar>
       <el-menu
+        v-if="!loading"
         ref="menu"
         :default-active="routeActiveIndex"
         :collapse="menuData.collapse"
@@ -34,6 +35,11 @@ import { useDefaultStore } from '@/core/store'
 export default {
   name: 'AppMenu',
   components: { Scrollbar, MenuItems },
+  data () {
+    return {
+      loading: true
+    }
+  },
   computed: {
     ...mapState(useDefaultStore, ['menuData']),
     // 选中的菜单index
@@ -51,6 +57,18 @@ export default {
     // 默认展开的菜单index
     defaultOpeneds () {
       return this.menuData.list.map(menu => menu.index)
+    }
+  },
+  watch: {
+    // 监听默认展开的菜单，发生变化时刷新菜单
+    defaultOpeneds: {
+      immediate: true,
+      handler () {
+        this.loading = true
+        this.$nextTick(() => {
+          this.loading = false
+        })
+      }
     }
   },
   methods: {
