@@ -117,7 +117,7 @@ export default {
      */
     __getForm () {
       this.form.avatar = '/avatar/man.png'
-      if (this.form.sex === 'FEMALE') {
+      if (this.form.gender === 'FEMALE') {
         this.form.avatar = '/avatar/woman.png'
       }
       return this.form

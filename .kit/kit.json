@@ -1,13 +1,14 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.3.1.1",
+  "version": "4.4.0.0",
   "private": false,
   "receivable": false,
   "compiler": "static",
   "repository": "https://gitee.com/goldpankit/eva-vue3-options",
   "branch": "",
   "supportedDatabases": [],
+  "presetPlugins": [],
   "prices": [
     {
       "type": "FREE",
