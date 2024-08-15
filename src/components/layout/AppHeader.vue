@@ -168,7 +168,7 @@ export default {
           this.$router.push({ name: 'login' })
           // 跳转完成后再清空用户，避免因userInfo为null导致的异常
           this.$nextTick(() => {
-            this.$defaultStore = null
+            this.$defaultStore.$reset()
           })
         })
         .catch(e => {
