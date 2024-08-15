@@ -18,6 +18,10 @@ class Authorizer {
       return result
     }
     const userInfo = this.#getStore().userInfo
+    // 如果是超管，则验证通过
+    if (this.isSuperAdmin()) {
+      return true
+    }
     for (const role of roles) {
       if (userInfo.roles.findIndex(r => r === role) === -1) {
         return false
@@ -34,6 +38,10 @@ class Authorizer {
       return result
     }
     const userInfo = this.#getStore().userInfo
+    // 如果是超管，则验证通过
+    if (this.isSuperAdmin()) {
+      return true
+    }
     for (const role of roles) {
       if (userInfo.roles.findIndex(r => r === role) > -1) {
         return true
@@ -50,6 +58,10 @@ class Authorizer {
       return result
     }
     const userInfo = this.#getStore().userInfo
+    // 如果是超管 && 权限为空，则验证通过
+    if (this.isSuperAdmin() && userInfo.permissions.length === 0) {
+      return true
+    }
     for (const permission of permissions) {
       if (userInfo.permissions.findIndex(p => p === permission) === -1) {
         return false
@@ -66,6 +78,10 @@ class Authorizer {
       return result
     }
     const userInfo = this.#getStore().userInfo
+    // 如果是超管 && 权限为空，则验证通过
+    if (this.isSuperAdmin() && userInfo.permissions.length === 0) {
+      return true
+    }
     for (const permission of permissions) {
       if (userInfo.permissions.findIndex(p => p === permission) > -1) {
         return true
@@ -83,9 +99,6 @@ class Authorizer {
     if (userInfo == null) {
       return false
     }
-    if (userInfo.roles == null || userInfo.roles.length === 0) {
-      return false
-    }
   }
 
   // 验证权限参数
@@ -95,9 +108,6 @@ class Authorizer {
     }
     const userInfo = this.#getStore().userInfo
     if (userInfo == null) {
-      return false
-    }
-    if (userInfo.permissions == null || userInfo.permissions.length === 0) {
       return false
     }
   }
