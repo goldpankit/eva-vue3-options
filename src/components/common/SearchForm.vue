@@ -10,7 +10,7 @@
     @submit.prevent
   >
     <slot></slot>
-    <section>
+    <section :style="{ width: buttonsWidth }">
       <slot name="buttons"></slot>
       <template v-if="collapse">
         <el-button
@@ -96,7 +96,6 @@ export default {
     height: 50px;
     overflow: hidden;
     section {
-      width: 215px;
       position: absolute;
       margin-bottom: 20px;
       top: 0;

@@ -9,6 +9,7 @@
         ref="searchForm"
         :collapse="true"
         :model="searchForm"
+        buttons-width="275px"
         label-width="100px"
       >
         <el-form-item label="操作人姓名" prop="userRealName">
