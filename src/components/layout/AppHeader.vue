@@ -166,10 +166,13 @@ export default {
       logout()
         .then(() => {
           this.$router.push({ name: 'login' })
-          // 跳转完成后再清空用户，避免因userInfo为null导致的异常
-          this.$nextTick(() => {
-            this.$defaultStore.$reset()
-          })
+            .then(() => {
+              /*
+               状态数据发生变化后，活跃页面会立即生效，重置状态数据后，会出现找不到状态数据和抛出null错误。
+               此处处理为页面跳转完成后再重置状态数据。
+              */
+              this.$defaultStore.$reset()
+            })
         })
         .catch(e => {
           this.$tip.apiFailed(e)
