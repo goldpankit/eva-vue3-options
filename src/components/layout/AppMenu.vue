@@ -233,16 +233,26 @@ export default {
   // 子菜单
   .el-sub-menu {
     .el-sub-menu__title{
+      transition: none;
       color: var(--menu-text-color) !important;
       background-color: var(--menu-background-color);
       &:hover {
         color: var(--menu-text-hover-color) !important;
       }
     }
+    // 选中状态
     &.is-active {
-      .el-submenu__title{
-        background-color: var(--submenu-background-color);
+      // 将当前选中目录调整为深色
+      .el-sub-menu__title {
+        background-color: var(--submenu-background-color) !important;
       }
+      // 将下一级子菜单的目录调整为深色
+      .el-sub-menu {
+        .el-sub-menu__title {
+          background-color: var(--submenu-background-color) !important;
+        }
+      }
+      // 将子菜单调整为深色
       .el-menu .el-menu-item{
         background-color: var(--submenu-background-color);
         // 悬浮
