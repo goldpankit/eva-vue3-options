@@ -1,7 +1,7 @@
 {
   "name": "vue3-options",
   "label": "Eva4前端Vue3选项式风格版",
-  "version": "4.4.0.0",
+  "version": "4.4.0.1",
   "private": false,
   "receivable": false,
   "compiler": "static",
@@ -15,7 +15,20 @@
       "value": 0
     }
   ],
-  "builds": [],
+  "builds": [
+    {
+      "name": "启动步骤",
+      "type": "Markdown",
+      "content": "### 安装依赖\n```shell\nnpm install --registry=https://registry.npmmirror.com\n```\n\n### 启动项目\n```shell\nnpm run serve\n```",
+      "contentType": "string"
+    },
+    {
+      "name": "构建后端",
+      "type": "Markdown",
+      "content": "后端采用Java、SpringBoot2、MyBatisPlus等主流技术栈。如已构建，请忽略！\n[前往构建](http://www.goldpankit.com/space/service/install?space=Eva&service=eva-springboot&major=4)",
+      "contentType": "string"
+    }
+  ],
   "unbuilds": [],
   "variables": [
     {
@@ -58,7 +71,7 @@
   "translator": {
     "output": ".kit/translated",
     "filepath": "",
-    "content": "// freemarker语法修复\nif (setting.compiler === 'freemarker') {\n    content = content\n      .replace(/\\$\\{/g, '<#noparse>${</#noparse>')\n      .replace(/\\#\\{/g, '<#noparse>${</#noparse>')\n}\n\n// login.vue内容替换\nif (filename === 'login.vue') {\n    content = content\n      .replace(/<h2>.*<\\/h2>/, '<h2>${loginTitle}</h2>')\n      .replace(/<h3>.*<\\/h3>/, '<h3>${loginDescription}</h3>')\n}\n\n// index.html内容替换\nif (filename === 'index.html') {\n    content = content\n      .replace(/<title>.*<\\/title>/, '<title>${loginTitle}</title>')\n}\n\n// AppMenu替换菜单顶部标题\nif (filename === 'AppMenu.vue') {\n    content = content\n      .replace('伊娃权限系统', '${menuTitle}')\n}\n\nreturn content"
+    "content": "// freemarker语法修复\nif (setting.compiler === 'freemarker') {\n    content = content\n      .replace(/\\$\\{/g, '<#noparse>${</#noparse>')\n      .replace(/\\#\\{/g, '<#noparse>#{</#noparse>')\n}\n\n// login.vue内容替换\nif (filename === 'login.vue') {\n    content = content\n      .replace(/<h2>.*<\\/h2>/, '<h2>${loginTitle}</h2>')\n      .replace(/<h3>.*<\\/h3>/, '<h3>${loginDescription}</h3>')\n}\n\n// index.html内容替换\nif (filename === 'index.html') {\n    content = content\n      .replace(/<title>.*<\\/title>/, '<title>${loginTitle}</title>')\n}\n\n// AppMenu替换菜单顶部标题\nif (filename === 'AppMenu.vue') {\n    content = content\n      .replace('伊娃权限系统', '${menuTitle}')\n}\n\nreturn content"
   },
   "settings": [
     {
