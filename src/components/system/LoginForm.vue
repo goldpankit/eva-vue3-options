@@ -1,7 +1,7 @@
 <template>
   <div class="login-form">
     <slot name="attention"></slot>
-    <h1>系统登录&nbsp;/&nbsp;LOGIN IN</h1>
+    <slot v-if="withTitle" name="title"><h1>系统登录&nbsp;/&nbsp;LOGIN IN</h1></slot>
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item prop="username" required>
         <el-input
@@ -56,6 +56,12 @@ import { getCaptcha, loginByPassword } from '@/api/system'
 
 export default defineComponent({
   name: 'LoginForm',
+  props: {
+    // 是否包含标题
+    withTitle: {
+      default: true
+    }
+  },
   data () {
     return {
       loading: false,
