@@ -3,7 +3,7 @@
     class="permission-config-dialog"
     v-model:visible="visible"
     :confirm-working="isWorking"
-    width="576px"
+    width="650px"
     title="授权权限"
     @confirm="confirm"
   >
@@ -24,6 +24,17 @@
       @tab-click="handleTabClick"
     >
       <el-tab-pane name="menu" label="菜单和功能">
+        <ul class="settings">
+          <li>
+            <el-checkbox>全部展开/折叠</el-checkbox>
+          </li>
+          <li>
+            <el-checkbox>全选</el-checkbox>
+          </li>
+          <li>
+            <el-checkbox>父子联动</el-checkbox>
+          </li>
+        </ul>
         <el-tree
           ref="menuTree"
           :data="permissionTabs.menu.permissions"
@@ -97,7 +108,13 @@ export default {
         }
       },
       // 已选中的权限ID
-      selectedIds: []
+      selectedIds: [],
+      // 菜单和功能设置
+      menuSettings: {
+        collapse: false,
+        selectedAll: false,
+        checkStrictly: false
+      }
     }
   },
   computed: {
@@ -250,9 +267,9 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .permission-config-dialog {
-  :deep(.window__body) {
+  .window__body {
     overflow-y: hidden !important;
     display: flex;
     flex-direction: column;
@@ -275,6 +292,29 @@ export default {
       .el-tabs__content {
         height: 100%;
         overflow-y: auto;
+        // 菜单和功能
+        #pane-menu {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          // 设置
+          .settings {
+            flex-shrink: 0;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            display: flex;
+            li {
+              margin-right: 20px;
+            }
+          }
+          // 菜单和功能数
+          .el-tree {
+            flex-grow: 1;
+            overflow-y: auto;
+          }
+        }
       }
     }
   }
